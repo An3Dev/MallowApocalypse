@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour {
 
         if (isPlayerDead)
         {
+            Debug.Log("I died!!!");
             playerAnimator.SetTrigger("Died");
         }
 	}

@@ -10,10 +10,12 @@ public class EnemyProgression : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        agent.speed = agent.speed * (Mathf.Pow(Variables.speedIncreasePerWave, waveNum));
-        agent.speed = agent.speed * (Mathf.Pow(Variables.speedIncreasePerDay, dayNum));
-        agent.acceleration = agent.acceleration * (Mathf.Pow(Variables.accelerationIncreasePerWave, waveNum));
-        agent.acceleration = agent.acceleration * (Mathf.Pow(Variables.accelerationIncreasePerDay, dayNum));
+        agent = GetComponent<NavMeshAgent> ();
+
+        agent.speed = agent.speed * (Mathf.Pow(Variables.speedIncreasePerWave, waveNum - 1));
+        agent.speed = agent.speed * (Mathf.Pow(Variables.speedIncreasePerDay, dayNum - 1));
+        agent.acceleration = agent.acceleration * (Mathf.Pow(Variables.accelerationIncreasePerWave, waveNum - 1));
+        agent.acceleration = agent.acceleration * (Mathf.Pow(Variables.accelerationIncreasePerDay, dayNum - 1));
     }
 	
 	// Update is called once per frame

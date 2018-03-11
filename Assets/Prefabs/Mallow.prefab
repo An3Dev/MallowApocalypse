@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114107500175751698}
   - component: {fileID: 114603266620171326}
   - component: {fileID: 114941750902231664}
+  - component: {fileID: 114452922926683638}
   m_Layer: 0
   m_Name: Mallow
   m_TagString: Enemy
@@ -163,7 +164,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202723598060172}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -197,6 +198,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09fb26c552f63b04d91446eeffea79b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114452922926683638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202723598060172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b64657e3037f440abb5c36ecc65940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114603266620171326
@@ -260,7 +272,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
