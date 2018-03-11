@@ -9,12 +9,12 @@ public class PlayerShoot : MonoBehaviour {
     Transform bulletSpawn;
 
     [SerializeField]
-    float fireRate = 200; // Shots per Minute
+    float fireRate; // Shots per Minute
 
     float timeSinceLastFire = 0;
 
     [SerializeField]
-    float bulletForce = 1000f;
+    float bulletForce;
 	// Use this for initialization
 	void Start () {
 		
@@ -26,11 +26,12 @@ public class PlayerShoot : MonoBehaviour {
         {
             // If fire rate time passed
             // Shoots 1 shot per second
-            if (Time.timeSinceLevelLoad - timeSinceLastFire > fireRate / 60)
+            if (Time.timeSinceLevelLoad - timeSinceLastFire > 60 / fireRate)
             {
-                GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation * Quaternion.Euler(new Vector3(90, 0, 0)));
+                GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation * Quaternion.Euler(90, 0, 0));
                 Rigidbody rb = bullet.GetComponent<Rigidbody>();
-                rb.AddRelativeForce(transform.up * bulletForce * Time.deltaTime);
+                // Apply force
+                rb.AddForce(Camera.main.transform.forward * bulletForce * Time.fixedDeltaTime);
                 timeSinceLastFire = Time.timeSinceLevelLoad;
                 Destroy(bullet, 5f);
             }

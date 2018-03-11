@@ -34,8 +34,8 @@ public class PlayerController : MonoBehaviour {
         float xMov = Input.GetAxisRaw("Horizontal");
         float yMov = Input.GetAxisRaw("Vertical");
 
-        Vector3 movHorizontal = transform.TransformDirection(Vector3.right) * xMov;
-        Vector3 movVertical = transform.TransformDirection(Vector3.forward) * yMov;
+        Vector3 movHorizontal = transform.right * xMov;
+        Vector3 movVertical = transform.forward * yMov;
 
         // Final movement vector;
         Vector3 velocity = (movHorizontal + movVertical).normalized * speed;
