@@ -17,22 +17,56 @@ public class PlayerShoot : MonoBehaviour {
     [SerializeField]
     float fireRate; // Shots per Minute
 
+    [SerializeField]
+    float bulletForce;
+
     float timeSinceLastFire = 0;
 
     [SerializeField]
-    float bulletForce;
+    int bulletsLeftInMagazine;
+
+    [SerializeField]
+    Animator playerAnimator;
+
+    bool isReloading;
+    float reloadStartTime;
+    float reloadTime;
+
+
 	// Use this for initialization
 	void Start () {
-		
+        bulletsLeftInMagazine = Variables.chocolateGunBulletsPerReload;
+        reloadTime = 0;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (Input.GetButton("Fire1"))
         {
+            // if needs to reload
+            if (bulletsLeftInMagazine < 1)
+            {
+
+                if (!isReloading)
+                {
+                    isReloading = true;
+                    reloadStartTime = Time.timeSinceLevelLoad;
+                    reloadTime = Variables.chocolateGunReloadTime;
+                    playerAnimator.SetTrigger("Reload");
+                }
+                
+                // Finished reloading
+                if (Time.timeSinceLevelLoad - reloadStartTime >= reloadTime)
+                {
+                    // Replenish bullets
+                    bulletsLeftInMagazine = Variables.chocolateBulletDamage;
+                    isReloading = false;
+                }
+            }
+
             // If fire rate time passed
             // Shoots 1 shot per second
-            if (Time.timeSinceLevelLoad - timeSinceLastFire > 60 / fireRate)
+            if (Time.timeSinceLevelLoad - timeSinceLastFire > 60 / fireRate && !isReloading)
             {
                 GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation * Quaternion.Euler(90, 0, 0));
                 Rigidbody rb = bullet.GetComponent<Rigidbody>();
@@ -41,6 +75,7 @@ public class PlayerShoot : MonoBehaviour {
                 if (gunSmokeEnabled)
                     gunSmoke.Play();
                 timeSinceLastFire = Time.timeSinceLevelLoad;
+                bulletsLeftInMagazine -= 1;
                 Destroy(bullet, 5f);
             }
         }

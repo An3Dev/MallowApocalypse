@@ -11,7 +11,7 @@ public class EnemyManager : MonoBehaviour {
     GameObject mallowPrefab;
 
     [SerializeField]
-    GameObject spawnPoint;
+    GameObject[] spawnPoints;
 
     private float timeOfLastSpawn = 0;
 
@@ -24,8 +24,9 @@ public class EnemyManager : MonoBehaviour {
 	void Update () {
 		if(Time.timeSinceLevelLoad - timeOfLastSpawn >= 60 / spawnsPerMin)
         {
+            int randomSpawnPoint = Random.Range(0, spawnPoints.Length);
             // Spawn mallow
-            GameObject mallow = Instantiate(mallowPrefab, spawnPoint.transform.position, Quaternion.identity);
+            GameObject mallow = Instantiate(mallowPrefab, spawnPoints[randomSpawnPoint].transform.position, Quaternion.identity);
             timeOfLastSpawn = Time.timeSinceLevelLoad;
         }
 	}

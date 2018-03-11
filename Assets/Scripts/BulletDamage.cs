@@ -2,7 +2,7 @@
 
 public class BulletDamage : MonoBehaviour {
 
-    EnemyStuff enemyStuff;
+    EnemyHealth enemyStuff;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +19,7 @@ public class BulletDamage : MonoBehaviour {
 
         if (collision.collider.tag == "Enemy")
         {
-            enemyStuff = collision.collider.GetComponent<EnemyStuff>();
+            enemyStuff = collision.collider.GetComponent<EnemyHealth>();
             enemyStuff.TakeDamage(Variables.chocolateBulletDamage);
         }
     }
