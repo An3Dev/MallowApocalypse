@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour {
 
@@ -12,11 +11,21 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float lookSensitivity = 5f;
 
-    private PlayerMotor motor;
+    [SerializeField]
+    private float thrusterForce = 0;
 
+    [Header("Spring Settings:")]
+    [SerializeField]
+    private float jointSpring = 0;
+    [SerializeField]
+    private float jointMaxForce = 0;
+
+    private PlayerMotor motor;
+    //private ConfigurableJoint joint;
     void Start()
     {
         motor = GetComponent<PlayerMotor>();
+        //joint = GetComponent<ConfigurableJoint>();
     }
 
     private void Update()
@@ -25,8 +34,8 @@ public class PlayerController : MonoBehaviour {
         float xMov = Input.GetAxisRaw("Horizontal");
         float yMov = Input.GetAxisRaw("Vertical");
 
-        Vector3 movHorizontal = transform.right * xMov;
-        Vector3 movVertical = transform.forward * yMov;
+        Vector3 movHorizontal = transform.TransformDirection(Vector3.right) * xMov;
+        Vector3 movVertical = transform.TransformDirection(Vector3.forward) * yMov;
 
         // Final movement vector;
         Vector3 velocity = (movHorizontal + movVertical).normalized * speed;
@@ -50,5 +59,21 @@ public class PlayerController : MonoBehaviour {
 
         // Apply camera rotation
         motor.RotateCamera(cameraRotation);
+
+        // Calculate thruster force from player input
+        Vector3 _thrusterForce = Vector3.zero;
+        if (Input.GetButton("Jump"))
+        {
+            _thrusterForce = Vector3.up * thrusterForce;
+        }
+
+        // Apply thruster force
+        motor.ApplyThruster(_thrusterForce);
+
     }
+
+    //private void SetJointSettings()
+    //{
+
+    //}
 }

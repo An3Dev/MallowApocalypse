@@ -1,42 +1,39 @@
-﻿using UnityEngine.Networking;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerShoot : NetworkBehaviour
-{
-
-    public PlayerWeapon weapon;
+public class PlayerShoot : MonoBehaviour {
 
     [SerializeField]
-    private Camera cam;
+    GameObject bulletPrefab;
 
     [SerializeField]
-    private LayerMask mask;
+    Transform bulletSpawn;
 
-    void Start()
-    {
-        if (cam == null)
+    [SerializeField]
+    float fireRate = 200; // Shots per Minute
+
+    float timeSinceLastFire = 0;
+
+    [SerializeField]
+    float bulletForce = 1000f;
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void FixedUpdate () {
+		if (Input.GetButton("Fire1"))
         {
-            Debug.LogError("PlayerShoot: No camera referenced!");
-            this.enabled = false;
+            // If fire rate time passed
+            // Shoots 1 shot per second
+            if (Time.timeSinceLevelLoad - timeSinceLastFire > fireRate / 60)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation * Quaternion.Euler(new Vector3(90, 0, 0)));
+                Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                rb.AddRelativeForce(transform.up * bulletForce * Time.deltaTime);
+                timeSinceLastFire = Time.timeSinceLevelLoad;
+                Destroy(bullet, 5f);
+            }
         }
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
-    }
-
-    void Shoot()
-    {
-        RaycastHit _hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out _hit, weapon.range, mask))
-        {
-            Debug.Log(_hit.collider.name + " was hit");
-        }
-
-    }
-
+	}
 }
