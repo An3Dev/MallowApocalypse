@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 136612224358969984}
   - component: {fileID: 23484582543560236}
   - component: {fileID: 54697308555410446}
+  - component: {fileID: 114262150885926508}
   m_Layer: 0
   m_Name: ChocolateBullet
   m_TagString: Untagged
@@ -99,6 +100,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &114262150885926508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144777520741996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8617311a957704796b583d0ad60c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136612224358969984
 CapsuleCollider:
   m_ObjectHideFlags: 1

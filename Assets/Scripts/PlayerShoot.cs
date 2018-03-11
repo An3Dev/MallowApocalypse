@@ -9,6 +9,12 @@ public class PlayerShoot : MonoBehaviour {
     Transform bulletSpawn;
 
     [SerializeField]
+    ParticleSystem gunSmoke;
+
+    [SerializeField]
+    bool gunSmokeEnabled;
+
+    [SerializeField]
     float fireRate; // Shots per Minute
 
     float timeSinceLastFire = 0;
@@ -32,6 +38,8 @@ public class PlayerShoot : MonoBehaviour {
                 Rigidbody rb = bullet.GetComponent<Rigidbody>();
                 // Apply force
                 rb.AddForce(Camera.main.transform.forward * bulletForce * Time.fixedDeltaTime);
+                if (gunSmokeEnabled)
+                    gunSmoke.Play();
                 timeSinceLastFire = Time.timeSinceLevelLoad;
                 Destroy(bullet, 5f);
             }
