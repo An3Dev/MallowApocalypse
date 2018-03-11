@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
 
@@ -6,6 +7,9 @@ public class PlayerHealth : MonoBehaviour {
 
     [SerializeField]
     Animator playerAnimator;
+
+    [SerializeField]
+    Slider healthBar;
 
     float health = Variables.playerHealth;
 
@@ -33,6 +37,7 @@ public class PlayerHealth : MonoBehaviour {
         if (!isPlayerDead)
         {
             health -= damage;
+            healthBar.value = Variables.playerHealth;
         }
     }
 }
