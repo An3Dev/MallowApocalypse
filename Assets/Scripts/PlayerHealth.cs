@@ -11,6 +11,12 @@ public class PlayerHealth : MonoBehaviour {
     [SerializeField]
     Slider healthBar;
 
+    [SerializeField]
+    GameObject gun;
+
+    [SerializeField]
+    Animator UIAnimator;
+
     float health = Variables.playerHealth;
 
 	// Use this for initialization
@@ -27,8 +33,15 @@ public class PlayerHealth : MonoBehaviour {
 
         if (isPlayerDead)
         {
-            Debug.Log("I died!!!");
+            
             playerAnimator.SetTrigger("Died");
+            // Makes gun independent. No longer part of player
+            gun.transform.parent = null;
+            // Adds gravity to gun so it falls
+            gun.AddComponent<Rigidbody>();
+
+            UIAnimator.SetTrigger("GameOver");
+
         }
 	}
 
@@ -37,7 +50,9 @@ public class PlayerHealth : MonoBehaviour {
         if (!isPlayerDead)
         {
             health -= damage;
-            healthBar.value = Variables.playerHealth;
+            // Convert to percentage
+            healthBar.value = health / (Variables.playerHealth / 100);
+            UIAnimator.SetTrigger("Damaged");
         }
     }
 }

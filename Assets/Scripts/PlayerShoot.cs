@@ -28,6 +28,15 @@ public class PlayerShoot : MonoBehaviour {
     [SerializeField]
     Animator playerAnimator;
 
+    [SerializeField]
+    AudioSource playerAudio;
+
+    [SerializeField]
+    AudioClip gunShotsClip;
+
+    [SerializeField]
+    AudioClip gunReloadClip;
+
     bool isReloading;
     float reloadStartTime;
     float reloadTime;
@@ -74,6 +83,8 @@ public class PlayerShoot : MonoBehaviour {
                 rb.AddForce(Camera.main.transform.forward * bulletForce * Time.fixedDeltaTime);
                 if (gunSmokeEnabled)
                     gunSmoke.Play();
+                playerAudio.clip = gunShotsClip;
+                playerAudio.Play();
                 timeSinceLastFire = Time.timeSinceLevelLoad;
                 bulletsLeftInMagazine -= 1;
                 Destroy(bullet, 5f);

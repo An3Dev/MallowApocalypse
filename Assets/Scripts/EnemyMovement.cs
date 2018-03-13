@@ -19,7 +19,11 @@ public class EnemyMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (PlayerHealth.isPlayerDead)
+        {
+            agent.enabled = false;
+            animator.SetTrigger("Celebrate");
+        }
 	}
 
     public void Die()
@@ -28,5 +32,14 @@ public class EnemyMovement : MonoBehaviour {
         animator.SetTrigger("Died");
         // Destroys itself
         Destroy(transform.gameObject, 1);
+    }
+
+
+    public void DieAttacking()
+    {
+        animator.SetTrigger("DieAttacking");
+        agent.enabled = false;
+        // Destroys itself
+        Destroy(transform.gameObject, 1.5f);
     }
 }

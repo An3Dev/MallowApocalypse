@@ -3,23 +3,19 @@
 public class EnemyAttack : MonoBehaviour {
 
     PlayerHealth playerHealth;
+    EnemyMovement enemyMovement;
 
 	// Use this for initialization
 	void Start () {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        enemyMovement = GetComponent<EnemyMovement>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {   
         // If near player
-        if(other.tag == "Player")
+        if(collision.collider.tag == "Player")
         {
-            Debug.Log("Damage");
+            enemyMovement.DieAttacking();
             playerHealth.TakeDamage(Variables.mallowDamage);
         }
     }

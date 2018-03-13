@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33258549121188818}
   - component: {fileID: 136576264471676200}
   - component: {fileID: 54450398848684514}
-  - component: {fileID: 136352327710569008}
   - component: {fileID: 195576851475887196}
   - component: {fileID: 95051842673867648}
   - component: {fileID: 114107500175751698}
@@ -88,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202723598060172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0.8, z: 12.45}
+  m_LocalPosition: {x: -10.3, y: 0.8, z: 24.9}
   m_LocalScale: {x: 1.5, y: 0.8, z: 1.5}
   m_Children:
   - {fileID: 4983516983008446}
@@ -233,19 +232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6498cd69de9fb4d8ea5700d3754a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &136352327710569008
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202723598060172}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136576264471676200
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -17,19 +17,25 @@ public class EnemyHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // if still alive
-		if (health < 1 && !isDead)
+		if (health < 1 && !isDead && !PlayerHealth.isPlayerDead)
         {
             isDead = true;
         }
 
         if (isDead)
         {
-            movement.Die();
+            Die();
         }
 	}
 
     public void TakeDamage(float damage)
     {
         health -= damage;
+    }
+
+    public void Die()
+    {
+        movement.Die();
+
     }
 }
