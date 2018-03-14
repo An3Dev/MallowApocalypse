@@ -53,29 +53,15 @@ public class PlayerShoot : MonoBehaviour {
 		if (Input.GetButton("Fire1"))
         {
             // if needs to reload
-            if (bulletsLeftInMagazine < 1)
+            if (bulletsLeftInMagazine < 1 )
             {
-
-                if (!isReloading)
-                {
-                    isReloading = true;
-                    reloadStartTime = Time.timeSinceLevelLoad;
-                    reloadTime = Variables.chocolateGunReloadTime;
-                    playerAnimator.SetTrigger("Reload");
-                }
+                Reload();
                 
-                // Finished reloading
-                if (Time.timeSinceLevelLoad - reloadStartTime >= reloadTime)
-                {
-                    // Replenish bullets
-                    bulletsLeftInMagazine = Variables.chocolateBulletDamage;
-                    isReloading = false;
-                }
             }
 
             // If fire rate time passed
             // Shoots 1 shot per second
-            if (Time.timeSinceLevelLoad - timeSinceLastFire > 60 / fireRate && !isReloading)
+            if (Time.timeSinceLevelLoad - timeSinceLastFire > 60 / fireRate && !isReloading && !PlayerHealth.isPlayerDead)
             {
                 GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation * Quaternion.Euler(90, 0, 0));
                 Rigidbody rb = bullet.GetComponent<Rigidbody>();
@@ -90,5 +76,29 @@ public class PlayerShoot : MonoBehaviour {
                 Destroy(bullet, 5f);
             }
         }
+
+        if (Input.GetButton("Jump"))
+        {
+            Reload();
+        }
 	}
+
+    void Reload()
+    {
+        if (!isReloading)
+        {
+            isReloading = true;
+            reloadStartTime = Time.timeSinceLevelLoad;
+            reloadTime = Variables.chocolateGunReloadTime;
+            playerAnimator.SetTrigger("Reload");
+        }
+
+        // Finished reloading
+        if (Time.timeSinceLevelLoad - reloadStartTime >= reloadTime)
+        {
+            // Replenish bullets
+            bulletsLeftInMagazine = Variables.chocolateBulletDamage;
+            isReloading = false;
+        }
+    }
 }

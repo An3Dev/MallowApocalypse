@@ -19,8 +19,14 @@ public class Variables{
     public static float accelerationIncreasePerWave = 1.5f;
     public static float speedIncreasePerDay =2;
     public static float accelerationIncreasePerDay = 2;
+    public static float spawnInterval = 5; // Spawns per second
 
     //Wall info
     public static float wallMovementPerWave = 10f;
+
+    //Wave info
+    public static int firstWaveMallowSpawns = 10;
+    public static float mallowSpawnIncreasePerWave = 1.2f;
+
 
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour {
 
@@ -43,6 +44,11 @@ public class PlayerHealth : MonoBehaviour {
             UIAnimator.SetTrigger("GameOver");
 
         }
+
+        if (isPlayerDead && Input.GetMouseButtonDown(0))
+        {
+            RestartLevel();
+        }
 	}
 
     public void TakeDamage(float damage)
@@ -54,5 +60,10 @@ public class PlayerHealth : MonoBehaviour {
             healthBar.value = health / (Variables.playerHealth / 100);
             UIAnimator.SetTrigger("Damaged");
         }
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("Main");
     }
 }
