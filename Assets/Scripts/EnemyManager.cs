@@ -51,7 +51,7 @@ public class EnemyManager : MonoBehaviour {
         // Spawn target was reached
         if (numOfTotalSpawned == spawnsThisWave)
         {
-            // If there aren't anymore marshmallows alive
+            // If there aren't any more marshmallows alive
             if (GameObject.Find("Mallow(Clone)") == null)
             {
                 // Progress to next wave

@@ -63,6 +63,7 @@ public class PlayerShoot : MonoBehaviour {
             // Shoots 1 shot per second
             if (Time.timeSinceLevelLoad - timeSinceLastFire > 60 / fireRate && !isReloading && !PlayerHealth.isPlayerDead)
             {
+                
                 GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation * Quaternion.Euler(90, 0, 0));
                 Rigidbody rb = bullet.GetComponent<Rigidbody>();
                 // Apply force
@@ -81,7 +82,12 @@ public class PlayerShoot : MonoBehaviour {
         {
             Reload();
         }
-	}
+
+        if (isReloading)
+        {
+            Reload();
+        }
+    }
 
     void Reload()
     {
@@ -91,6 +97,8 @@ public class PlayerShoot : MonoBehaviour {
             reloadStartTime = Time.timeSinceLevelLoad;
             reloadTime = Variables.chocolateGunReloadTime;
             playerAnimator.SetTrigger("Reload");
+            playerAudio.clip = gunReloadClip;
+            playerAudio.Play();
         }
 
         // Finished reloading
