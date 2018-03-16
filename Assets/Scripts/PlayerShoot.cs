@@ -23,7 +23,7 @@ public class PlayerShoot : MonoBehaviour {
     float timeSinceLastFire = 0;
 
     [SerializeField]
-    int bulletsLeftInMagazine;
+    public int bulletsLeftInMagazine;
 
     [SerializeField]
     Animator playerAnimator;
@@ -45,6 +45,7 @@ public class PlayerShoot : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         bulletsLeftInMagazine = Variables.chocolateGunBulletsPerReload;
+        fireRate = Variables.chocolateGunFireRate;
         reloadTime = 0;
 	}
 	
@@ -69,11 +70,16 @@ public class PlayerShoot : MonoBehaviour {
                 // Apply force
                 rb.AddForce(Camera.main.transform.forward * bulletForce * Time.fixedDeltaTime);
                 if (gunSmokeEnabled)
+                {
                     gunSmoke.Play();
+                }
+
                 playerAudio.clip = gunShotsClip;
                 playerAudio.Play();
                 timeSinceLastFire = Time.timeSinceLevelLoad;
+                // Subtracts bullets from magazine
                 bulletsLeftInMagazine -= 1;
+                // Destroys bullet after 5 seconds
                 Destroy(bullet, 5f);
             }
         }
@@ -97,6 +103,7 @@ public class PlayerShoot : MonoBehaviour {
             reloadStartTime = Time.timeSinceLevelLoad;
             reloadTime = Variables.chocolateGunReloadTime;
             playerAnimator.SetTrigger("Reload");
+            playerAudio.volume = 1;
             playerAudio.clip = gunReloadClip;
             playerAudio.Play();
         }
@@ -105,7 +112,7 @@ public class PlayerShoot : MonoBehaviour {
         if (Time.timeSinceLevelLoad - reloadStartTime >= reloadTime)
         {
             // Replenish bullets
-            bulletsLeftInMagazine = Variables.chocolateBulletDamage;
+            bulletsLeftInMagazine = Variables.chocolateGunBulletsPerReload;
             isReloading = false;
         }
     }

@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour {
     Animator playerAnimator;
 
     [SerializeField]
-    Slider healthBar;
+    UIManager managerOfUI;
 
     [SerializeField]
     GameObject gun;
@@ -56,14 +56,51 @@ public class PlayerHealth : MonoBehaviour {
         if (!isPlayerDead)
         {
             health -= damage;
-            // Convert to percentage
-            healthBar.value = health / (Variables.playerHealth / 100);
             UIAnimator.SetTrigger("Damaged");
+            // Change value of health bar
+            managerOfUI.ChangeHealthBar(health);
+            
         }
     }
 
     public void RestartLevel()
     {
+        ResetStaticVars();
         SceneManager.LoadScene("Main");
+    }
+
+    void ResetStaticVars()
+    {
+        // Chocolate gun info
+        Variables.chocolateGunName = "Chocolate Blaster";
+        Variables.chocolateBulletDamage = 50;
+        Variables.chocolateGunFireRate = 60;
+        Variables.chocolateGunReloadTime = 1;
+        Variables.chocolateGunBulletsPerReload = 5;
+
+        // Player info
+        Variables.playerHealth = 500;
+
+        // Mallow info
+        Variables.mallowHealth = 100;
+        Variables.mallowDamage = 50;
+        Variables.mallowBeginningSpeed = 3.5f;
+        Variables.mallowBeginningAcceleration = 8;
+        Variables.speedIncreasePerWave = 1.5f;
+        Variables.accelerationIncreasePerWave = 1.5f;
+        Variables.speedIncreasePerDay = 2;
+        Variables.accelerationIncreasePerDay = 2;
+        Variables.spawnInterval = 5; // Spawns per second
+        Variables.mallowKillRewardValue = 1; // In dollars
+
+        //Wall info
+        Variables.wallMovementPerWave = 10f;
+
+        //Wave info
+        Variables.firstWaveMallowSpawns = 10;
+        Variables.mallowSpawnIncreasePerWave = 1.2f;
+
+        // Money
+        Variables.money = 0;
     }
 }

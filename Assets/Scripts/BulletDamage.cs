@@ -2,7 +2,7 @@
 
 public class BulletDamage : MonoBehaviour {
 
-    EnemyHealth enemyStuff;
+    EnemyHealth enemyHealth;
 
 	// Use this for initialization
 	void Start () {
@@ -18,9 +18,16 @@ public class BulletDamage : MonoBehaviour {
     {
 
         if (collision.collider.tag == "Enemy")
+
         {
-            enemyStuff = collision.collider.GetComponent<EnemyHealth>();
-            enemyStuff.TakeDamage(Variables.chocolateBulletDamage);
+            // Assigns script
+            enemyHealth = collision.collider.GetComponent<EnemyHealth>();
+
+            // If there is an enemy health script(It's removed when mallow's health is 0)
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(Variables.chocolateBulletDamage);
+            }
         }
     }
 }

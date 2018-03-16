@@ -28,10 +28,13 @@ public class EnemyMovement : MonoBehaviour {
 
     public void Die()
     {
-        agent.enabled = false;
+
+
         animator.SetTrigger("Died");
+        agent.enabled = false;
         // Destroys itself
         Destroy(transform.gameObject, 1);
+        IncreaseMoney(Variables.mallowKillRewardValue);
     }
 
 
@@ -40,6 +43,13 @@ public class EnemyMovement : MonoBehaviour {
         animator.SetTrigger("DieAttacking");
         agent.enabled = false;
         // Destroys itself
-        Destroy(transform.gameObject, 1.5f);
+        Destroy(transform.gameObject, 0.35f);
+        IncreaseMoney(Variables.mallowKillRewardValue);
+    }
+
+    // Increases the money the player has
+    void IncreaseMoney(float moneyIncrease)
+    {
+        Variables.money += moneyIncrease;
     }
 }

@@ -25,6 +25,8 @@ public class EnemyHealth : MonoBehaviour {
         if (isDead)
         {
             Die();
+            // Destroys this script instance from the game object
+            Destroy(this);
         }
 	}
 
@@ -36,6 +38,5 @@ public class EnemyHealth : MonoBehaviour {
     public void Die()
     {
         movement.Die();
-
     }
 }

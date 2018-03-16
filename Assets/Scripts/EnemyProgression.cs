@@ -4,7 +4,6 @@ using UnityEngine.AI;
 public class EnemyProgression : MonoBehaviour {
 
     public static int waveNum = 1;
-    public static int dayNum = 1;
 
     NavMeshAgent agent;
 
@@ -12,10 +11,9 @@ public class EnemyProgression : MonoBehaviour {
 	void Start () {
         agent = GetComponent<NavMeshAgent> ();
 
-        agent.speed = agent.speed * (Mathf.Pow(Variables.speedIncreasePerWave, waveNum - 1));
-        agent.speed = agent.speed * (Mathf.Pow(Variables.speedIncreasePerDay, dayNum - 1));
-        agent.acceleration = agent.acceleration * (Mathf.Pow(Variables.accelerationIncreasePerWave, waveNum - 1));
-        agent.acceleration = agent.acceleration * (Mathf.Pow(Variables.accelerationIncreasePerDay, dayNum - 1));
+        agent.speed = Variables.mallowBeginningSpeed * (Mathf.Pow(Variables.speedIncreasePerWave, waveNum - 1));
+        agent.acceleration = Variables.mallowBeginningAcceleration * (Mathf.Pow(Variables.accelerationIncreasePerWave, waveNum - 1));
+        
     }
 	
 	// Update is called once per frame
