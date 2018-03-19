@@ -30,6 +30,7 @@ public class Variables{
     //Wave info
     public static int firstWaveMallowSpawns = 10;
     public static float mallowSpawnIncreasePerWave = 1.2f;
+    public static int waveNum = 1;
 
     // Money
     public static float money = 0;

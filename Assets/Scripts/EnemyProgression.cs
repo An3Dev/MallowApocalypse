@@ -3,12 +3,15 @@ using UnityEngine.AI;
 
 public class EnemyProgression : MonoBehaviour {
 
-    public static int waveNum = 1;
+
+    public int waveNum;
 
     NavMeshAgent agent;
 
 	// Use this for initialization
 	void Start () {
+        waveNum = Variables.waveNum;
+
         agent = GetComponent<NavMeshAgent> ();
 
         agent.speed = Variables.mallowBeginningSpeed * (Mathf.Pow(Variables.speedIncreasePerWave, waveNum - 1));

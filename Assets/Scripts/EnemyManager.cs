@@ -14,6 +14,8 @@ public class EnemyManager : MonoBehaviour {
     [SerializeField]
     GameObject[] spawnPoints;
 
+    EnemyProgression enemyProgression;
+
     PlayerHealth playerHealth;
 
     // How many we have spawned so far
@@ -22,16 +24,19 @@ public class EnemyManager : MonoBehaviour {
 
     private float timeOfLastSpawn = 0;
 
-    public static int waveNum = 1;
+    int waveNum = 1;
 
 	// Use this for initialization
 	void Start () {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-
+        enemyProgression = GetComponent<EnemyProgression>();
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        waveNum = enemyProgression.waveNum;
         // This is an exponential increase
         spawnsThisWave = Variables.firstWaveMallowSpawns * Mathf.Pow(Variables.mallowSpawnIncreasePerWave, waveNum - 1); 
 
