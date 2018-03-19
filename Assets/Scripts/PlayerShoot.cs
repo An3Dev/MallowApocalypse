@@ -37,6 +37,9 @@ public class PlayerShoot : MonoBehaviour {
     [SerializeField]
     AudioClip gunReloadClip;
 
+    [SerializeField]
+    UIManager managerOfUI;
+
     bool isReloading;
     float reloadStartTime;
     float reloadTime;
@@ -79,6 +82,8 @@ public class PlayerShoot : MonoBehaviour {
                 timeSinceLastFire = Time.timeSinceLevelLoad;
                 // Subtracts bullets from magazine
                 bulletsLeftInMagazine -= 1;
+                managerOfUI.ChangeAmmoBar(Mathf.Round(bulletsLeftInMagazine));
+                
                 // Destroys bullet after 5 seconds
                 Destroy(bullet, 5f);
             }
@@ -114,6 +119,7 @@ public class PlayerShoot : MonoBehaviour {
             // Replenish bullets
             bulletsLeftInMagazine = Variables.chocolateGunBulletsPerReload;
             isReloading = false;
+            managerOfUI.ChangeAmmoBar(Mathf.Round(bulletsLeftInMagazine));
         }
     }
 }

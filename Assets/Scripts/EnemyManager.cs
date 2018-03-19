@@ -14,6 +14,7 @@ public class EnemyManager : MonoBehaviour {
     [SerializeField]
     GameObject[] spawnPoints;
 
+    [SerializeField]
     EnemyProgression enemyProgression;
 
     PlayerHealth playerHealth;
@@ -29,7 +30,7 @@ public class EnemyManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        enemyProgression = GetComponent<EnemyProgression>();
+        
         
 	}
 	
