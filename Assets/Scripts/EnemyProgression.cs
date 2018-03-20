@@ -14,13 +14,13 @@ public class EnemyProgression : MonoBehaviour {
 
         agent = GetComponent<NavMeshAgent> ();
 
-        agent.speed = Variables.mallowBeginningSpeed * (Mathf.Pow(Variables.speedIncreasePerWave, waveNum - 1));
-        agent.acceleration = Variables.mallowBeginningAcceleration * (Mathf.Pow(Variables.accelerationIncreasePerWave, waveNum - 1));
+        
         
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        agent.speed = Variables.mallowBeginningSpeed * (Mathf.Pow(Variables.speedIncreasePerWave, waveNum - 1));
+        agent.acceleration = Variables.mallowBeginningAcceleration * (Mathf.Pow(Variables.accelerationIncreasePerWave, waveNum - 1));
+    }
 }

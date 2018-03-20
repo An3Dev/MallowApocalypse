@@ -28,7 +28,7 @@ public class Variables{
     public static float wallMovementPerWave = 10f;
 
     //Wave info
-    public static int firstWaveMallowSpawns = 1;
+    public static int firstWaveMallowSpawns = 10;
     public static float mallowSpawnIncreasePerWave = 1.2f;
     public static int waveNum = 1;
 
