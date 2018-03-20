@@ -20,6 +20,12 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     float ammoBarTransitionSmoothness;
 
+    [SerializeField]
+    Text waveText;
+
+    [SerializeField]
+    Animator UIAnimator;
+
 
     float targetHealth = 100;
 
@@ -46,6 +52,8 @@ public class UIManager : MonoBehaviour {
         {
             ammoBar.value = targetAmmo;
         }
+
+        
     }
 
     public void ChangeHealthBar(float newValue)
@@ -58,5 +66,14 @@ public class UIManager : MonoBehaviour {
     {
         targetAmmo = newValue / ((float) Variables.chocolateGunBulletsPerReload / 100);
         
+    }
+
+    public void NewWave(float waveNum) 
+    {
+        waveText.text = "Wave " + (int) waveNum;
+
+        Debug.Log(waveText.text);
+        
+        UIAnimator.SetTrigger("NewWave");
     }
 }

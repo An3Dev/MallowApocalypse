@@ -193,6 +193,7 @@ MonoBehaviour:
   - {fileID: 1429805078}
   enemyProgression: {fileID: 114452922926683638, guid: fccd9db5172317b41bcd573233519a48,
     type: 2}
+  managerOfUI: {fileID: 1943727953}
   numOfTotalSpawned: 0
 --- !u!1 &195300955
 GameObject:
@@ -2652,6 +2653,8 @@ MonoBehaviour:
   ammoBar: {fileID: 234351625}
   healthBarTransitionSmoothness: 5
   ammoBarTransitionSmoothness: 100
+  waveText: {fileID: 1925871318}
+  UIAnimator: {fileID: 1943727952}
 --- !u!1 &1983530922
 GameObject:
   m_ObjectHideFlags: 0
