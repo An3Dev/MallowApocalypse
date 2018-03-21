@@ -15,6 +15,9 @@ public class PlayerShoot : MonoBehaviour {
     bool gunSmokeEnabled;
 
     [SerializeField]
+    bool audioEnabled;
+
+    [SerializeField]
     float fireRate; // Shots per Minute
 
     [SerializeField]
@@ -77,8 +80,13 @@ public class PlayerShoot : MonoBehaviour {
                     gunSmoke.Play();
                 }
 
-                playerAudio.clip = gunShotsClip;
-                playerAudio.Play();
+
+                if (audioEnabled)
+                {
+                    playerAudio.clip = gunShotsClip;
+                    playerAudio.volume = 0.4f;
+                    playerAudio.Play();
+                }
                 timeSinceLastFire = Time.timeSinceLevelLoad;
                 // Subtracts bullets from magazine
                 bulletsLeftInMagazine -= 1;
@@ -108,9 +116,12 @@ public class PlayerShoot : MonoBehaviour {
             reloadStartTime = Time.timeSinceLevelLoad;
             reloadTime = Variables.chocolateGunReloadTime;
             playerAnimator.SetTrigger("Reload");
-            playerAudio.volume = 1;
-            playerAudio.clip = gunReloadClip;
-            playerAudio.Play();
+            if (audioEnabled)
+            {
+                playerAudio.volume = 1;
+                playerAudio.clip = gunReloadClip;
+                playerAudio.Play();
+            }
         }
 
         // Finished reloading

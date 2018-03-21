@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour {
     {
         waveText.text = "Wave " + (int) waveNum;
 
-        Debug.Log(waveText.text);
+        Debug.LogError(waveText.text);
         
         UIAnimator.SetTrigger("NewWave");
     }

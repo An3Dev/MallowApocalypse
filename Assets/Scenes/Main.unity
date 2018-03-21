@@ -1174,8 +1174,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e43e7880a1eb08e47a274d84b436c714, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.541
+  m_Pitch: 0.3
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1899,6 +1899,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 230778819}
   gunSmoke: {fileID: 1172418202}
   gunSmokeEnabled: 0
+  audioEnabled: 0
   fireRate: 300
   bulletForce: 7000
   bulletsLeftInMagazine: 0

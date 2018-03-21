@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour {
     private void Update()
     {
         // Calculate movement velocity as a 3D vector
-        float xMov = Input.GetAxisRaw("Horizontal");
-        float yMov = Input.GetAxisRaw("Vertical");
+        float xMov = Input.GetAxis("Horizontal");
+        float yMov = Input.GetAxis("Vertical");
 
         Vector3 movHorizontal = transform.right * xMov;
         Vector3 movVertical = transform.forward * yMov;

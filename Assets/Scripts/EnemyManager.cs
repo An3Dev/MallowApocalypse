@@ -42,10 +42,15 @@ public class EnemyManager : MonoBehaviour {
 
         waveNum = enemyProgression.waveNum;
 
-        // This is an exponential increase
-        spawnsThisWave = Variables.firstWaveMallowSpawns * Mathf.Pow(Variables.mallowSpawnIncreasePerWave, waveNum); 
+        Debug.Log("Wave num: " + waveNum);
 
-		if(Time.timeSinceLevelLoad - timeOfLastSpawn >= Variables.spawnInterval && numOfTotalSpawned < spawnsThisWave)
+        // This is an exponential increase
+        spawnsThisWave = Mathf.Round(Variables.firstWaveMallowSpawns * Mathf.Pow(Variables.mallowSpawnIncreasePerWave, waveNum - 1));
+
+        Debug.Log("Wanted spawns: " + spawnsThisWave);
+        Debug.Log("Spawned right now: " + numOfTotalSpawned);
+
+        if (Time.timeSinceLevelLoad - timeOfLastSpawn >= Variables.spawnInterval && numOfTotalSpawned < spawnsThisWave)
         {
             // If player isnt dead
             if (!PlayerHealth.isPlayerDead)
@@ -59,7 +64,7 @@ public class EnemyManager : MonoBehaviour {
             }
         }
 
-       
+        
         // Spawn target was reached
         if (numOfTotalSpawned == spawnsThisWave)
         {
@@ -67,15 +72,15 @@ public class EnemyManager : MonoBehaviour {
             // If there aren't any more marshmallows alive
             if (GameObject.Find("Mallow(Clone)") == null)
             {
-
+                // Reset number of spawned because its not needed anymore for wave 1.
+                numOfTotalSpawned = 0;
 
                 // Progress to next wave
                 enemyProgression.waveNum += 1;
                 waveNum = enemyProgression.waveNum;
                 managerOfUI.NewWave((float)waveNum);
-                Debug.Log(waveNum);
-                // Reset number of spawned because its not needed anymore for wave 1.
-                numOfTotalSpawned = 0;
+               
+                
             }
         }
 	}

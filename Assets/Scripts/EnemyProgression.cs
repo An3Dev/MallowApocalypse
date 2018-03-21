@@ -22,5 +22,8 @@ public class EnemyProgression : MonoBehaviour {
 	void Update () {
         agent.speed = Variables.mallowBeginningSpeed * (Mathf.Pow(Variables.speedIncreasePerWave, waveNum - 1));
         agent.acceleration = Variables.mallowBeginningAcceleration * (Mathf.Pow(Variables.accelerationIncreasePerWave, waveNum - 1));
+
+        Debug.Log("Speed: " + agent.speed);
+        Debug.Log("Acceleration: " + agent.acceleration);
     }
 }

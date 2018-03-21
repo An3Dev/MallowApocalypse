@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b64657e3037f440abb5c36ecc65940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveNum: 2
 --- !u!114 &114603266620171326
 MonoBehaviour:
   m_ObjectHideFlags: 1
