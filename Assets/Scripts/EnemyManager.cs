@@ -40,15 +40,15 @@ public class EnemyManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        waveNum = enemyProgression.waveNum;
+        waveNum = GameController.waveNum;
 
-        Debug.Log("Wave num: " + waveNum);
+        //Debug.Log("Wave num: " + waveNum);
 
         // This is an exponential increase
         spawnsThisWave = Mathf.Round(Variables.firstWaveMallowSpawns * Mathf.Pow(Variables.mallowSpawnIncreasePerWave, waveNum - 1));
 
-        Debug.Log("Wanted spawns: " + spawnsThisWave);
-        Debug.Log("Spawned right now: " + numOfTotalSpawned);
+        //Debug.Log("Wanted spawns: " + spawnsThisWave);
+        //Debug.Log("Spawned right now: " + numOfTotalSpawned);
 
         if (Time.timeSinceLevelLoad - timeOfLastSpawn >= Variables.spawnInterval && numOfTotalSpawned < spawnsThisWave)
         {
@@ -76,8 +76,11 @@ public class EnemyManager : MonoBehaviour {
                 numOfTotalSpawned = 0;
 
                 // Progress to next wave
-                enemyProgression.waveNum += 1;
-                waveNum = enemyProgression.waveNum;
+                GameController.waveNum += 1;
+
+                Debug.Log("Come on: " + GameController.waveNum);
+
+                waveNum = GameController.waveNum;
                 managerOfUI.NewWave((float)waveNum);
                
                 

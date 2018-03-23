@@ -18,6 +18,9 @@ public class PlayerHealth : MonoBehaviour {
     [SerializeField]
     Animator UIAnimator;
 
+    [SerializeField]
+    GameController gameController;
+
     float health = Variables.playerHealth;
 
 	// Use this for initialization
@@ -38,16 +41,23 @@ public class PlayerHealth : MonoBehaviour {
             playerAnimator.SetTrigger("Died");
             // Makes gun independent. No longer part of player
             gun.transform.parent = null;
-            // Adds gravity to gun so it falls
-            gun.AddComponent<Rigidbody>();
+
+            // Adds rigidbody with gravity to gun so it falls
+            if (gun.GetComponent<Rigidbody>() == null)
+            {
+                gun.AddComponent<Rigidbody>();
+            }
+            
 
             UIAnimator.SetTrigger("GameOver");
 
+            // Change value of health bar
+            managerOfUI.ChangeHealthBar(health);
         }
 
         if (isPlayerDead && Input.GetMouseButtonDown(0))
         {
-            RestartLevel();
+            gameController.Restart();
         }
 	}
 
@@ -62,15 +72,5 @@ public class PlayerHealth : MonoBehaviour {
             
         }
     }
-
-    public void RestartLevel()
-    {
-        ResetStaticVars();
-        SceneManager.LoadScene("Main");
-    }
-
-    void ResetStaticVars()
-    {
         
-    }
 }

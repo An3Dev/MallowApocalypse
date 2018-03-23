@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         // Sets money text
         moneyText.text = "$" + Variables.money;
 
@@ -71,8 +72,7 @@ public class UIManager : MonoBehaviour {
     public void NewWave(float waveNum) 
     {
         waveText.text = "Wave " + (int) waveNum;
-
-        Debug.LogError(waveText.text);
+        
         
         UIAnimator.SetTrigger("NewWave");
     }

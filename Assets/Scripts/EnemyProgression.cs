@@ -3,14 +3,16 @@ using UnityEngine.AI;
 
 public class EnemyProgression : MonoBehaviour {
 
-
-    public int waveNum;
+    
+   
 
     NavMeshAgent agent;
 
+    bool reachedTopSpeed = false, reachedTopAcceleration = false;
+
 	// Use this for initialization
 	void Start () {
-        waveNum = Variables.waveNum;
+        
 
         agent = GetComponent<NavMeshAgent> ();
 
@@ -20,9 +22,38 @@ public class EnemyProgression : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        agent.speed = Variables.mallowBeginningSpeed * (Mathf.Pow(Variables.speedIncreasePerWave, waveNum - 1));
-        agent.acceleration = Variables.mallowBeginningAcceleration * (Mathf.Pow(Variables.accelerationIncreasePerWave, waveNum - 1));
 
+        
+        // Mallow speed increase
+        if (agent.speed < Variables.mallowTopSpeed)
+        {
+            agent.speed = 0.25f * (GameController.waveNum - 1) + Variables.mallowBeginningSpeed;
+           
+        }
+        if (agent.speed >= Variables.mallowTopSpeed)
+        {
+            reachedTopSpeed = true;
+        }
+        if (reachedTopSpeed)
+        {
+            agent.speed = Variables.mallowTopSpeed;
+        }
+
+        // Mallow acceleration increase
+        if (agent.acceleration < Variables.mallowTopAcceleration)
+        {
+            agent.acceleration = 0.25f * (GameController.waveNum - 1) + Variables.mallowBeginningAcceleration;
+        }
+        if (agent.acceleration == Variables.mallowTopAcceleration)
+        {
+            reachedTopAcceleration = true;
+        }
+        if (reachedTopAcceleration)
+        {
+            agent.acceleration = Variables.mallowBeginningAcceleration;
+        }
+
+        //Debug.Log(EnemyProgression.waveNum);
         Debug.Log("Speed: " + agent.speed);
         Debug.Log("Acceleration: " + agent.acceleration);
     }
