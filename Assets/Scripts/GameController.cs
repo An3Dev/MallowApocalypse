@@ -24,6 +24,15 @@ public class GameController : MonoBehaviour {
         SceneManager.LoadScene("Main");
     }
 
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    void UnpauseGame()
+    {
+        Time.timeScale = 1;
+    }
+
     void ResetStaticVariables()
     {
         // Chocolate gun info
