@@ -48,24 +48,31 @@ public class GameController : MonoBehaviour {
 
         // Mallow info
         Variables. mallowHealth = 100;
+        Variables.mallowBeginningHealth = 100;
+        Variables.mallowHealthIncrease = 25;
+        Variables.mallowMaxHealth = 300;
         Variables. mallowDamage = 50;
+        Variables.mallowBeginningDamage = 50;
+        Variables.mallowDamageIncrease = 10;
+        Variables.mallowMaxDamage = 200;
         Variables. mallowBeginningSpeed = 3f;
         Variables. mallowBeginningAcceleration = 6;
         Variables. mallowTopSpeed = 7;
         Variables. mallowTopAcceleration = 15;
-        Variables. speedIncreasePerWave = 2f;
-        Variables. accelerationIncreasePerWave = 2f;
+        Variables. speedIncreasePerWave = .5f;
+        Variables. accelerationIncreasePerWave = .5f;
         Variables. spawnInterval = 3f; // Spawns per second
         Variables.spawnIntervalDecrease = .25f; // Spawn decrease every wave
-        Variables. minSpawnInterval = 0.5f;
+        Variables. minSpawnInterval = 1f;
+        Variables.beginningSpawnInterval = 5;
         Variables. mallowKillRewardValue = 1; // In dollars
 
-        //Wall info
-        Variables. wallMovementPerWave = 10f;
+        ////Wall info
+        //Variables. wallMovementPerWave = 10f;
 
         //Wave info
         Variables. firstWaveMallowSpawns = 10;
-        Variables. mallowSpawnIncreasePerWave = 1.25f;
+        Variables. mallowSpawnIncreasePerWave = 5f;
         Variables. waveNum = 1;
 
         // Money

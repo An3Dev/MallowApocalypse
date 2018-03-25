@@ -15,27 +15,35 @@ public class Variables{
 
     // Player info
     public static int playerHealth = 300;
+    public static int beginningPlayerHealth = 300;
 
     // Mallow info
     public static int mallowHealth = 100;
+    public static int mallowBeginningHealth = 100;
+    public static int mallowHealthIncrease = 25;
+    public static int mallowMaxHealth = 300;
     public static int mallowDamage = 50;
+    public static int mallowBeginningDamage = 50;
+    public static int mallowDamageIncrease = 10;
+    public static int mallowMaxDamage = 200;
     public static float mallowBeginningSpeed = 3f;
     public static float mallowBeginningAcceleration = 6;
     public static float mallowTopSpeed = 7;
     public static float mallowTopAcceleration = 15;
-    public static float speedIncreasePerWave = 2f;
-    public static float accelerationIncreasePerWave = 2f;
+    public static float speedIncreasePerWave = .5f;
+    public static float accelerationIncreasePerWave = .5f;
     public static float spawnInterval = 5f; // Spawns per second
     public static float spawnIntervalDecrease = .25f; // Spawn decrease every wave
-    public static float minSpawnInterval = 0.5f;
+    public static float minSpawnInterval = 1f;
+    public static float beginningSpawnInterval = 5;
     public static float mallowKillRewardValue = 1; // In dollars
 
     //Wall info
-    public static float wallMovementPerWave = 10f;
+    //public static float wallMovementPerWave = 10f;
 
     //Wave info
     public static int firstWaveMallowSpawns = 10;
-    public static float mallowSpawnIncreasePerWave = 1.25f;
+    public static float mallowSpawnIncreasePerWave = 5;
     public static int waveNum = 1;
 
     // Money
@@ -45,6 +53,10 @@ public class Variables{
     public static int fireRateBeginningCost = 10;
     public static int fireRateIncreaseAmount = 10;
     public static int fireRateCostIncreaseAmount = 10;
+    public static int maxFireRate = 500;
+    public static int playerHealthBeginningCost = 20;
+    public static int playerHealthIncreaseAmount = 10;
+    public static int playerHealthCostIncreaseAmount = 20;
 
 
 }

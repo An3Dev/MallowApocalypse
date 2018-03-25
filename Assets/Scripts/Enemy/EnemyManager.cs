@@ -44,15 +44,15 @@ public class EnemyManager : MonoBehaviour {
 
         //Debug.Log("Wave num: " + waveNum);
 
-        // This is an exponential increase
-        spawnsThisWave = Mathf.Round(Variables.firstWaveMallowSpawns * Mathf.Pow(Variables.mallowSpawnIncreasePerWave, waveNum - 1));
+        // This is a linear increase
+        spawnsThisWave = Mathf.Round(Variables.mallowSpawnIncreasePerWave * (waveNum - 1) + Variables.firstWaveMallowSpawns);
 
         //Debug.Log("Wanted spawns: " + spawnsThisWave);
         //Debug.Log("Spawned right now: " + numOfTotalSpawned);
 
         if (Time.timeSinceLevelLoad - timeOfLastSpawn >= Variables.spawnInterval && numOfTotalSpawned < spawnsThisWave)
         {
-            // If player isnt dead
+            // If player isn't dead
             if (!PlayerHealth.isPlayerDead)
             {
             int randomSpawnPoint = Random.Range(0, spawnPoints.Length);

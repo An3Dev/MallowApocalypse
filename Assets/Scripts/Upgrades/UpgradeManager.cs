@@ -21,6 +21,11 @@ public class UpgradeManager : MonoBehaviour {
 
     int fireRateCurrentCost;
 
+    // Player health
+
+    //[SerializeField]
+
+
 	// Use this for initialization
 	void Start () {
         fireRateCurrentCost = Variables.fireRateBeginningCost;
