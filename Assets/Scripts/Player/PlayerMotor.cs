@@ -11,6 +11,8 @@ public class PlayerMotor : MonoBehaviour {
     private Vector3 cameraRotation = Vector3.zero;
     private Vector3 thrusterForce = Vector3.zero;
 
+    private float cameraSmoothness = 10;
+
     private Rigidbody rb;
 
     private void Start()
@@ -55,7 +57,8 @@ public class PlayerMotor : MonoBehaviour {
     // Perform rotation
     void PerformRotation()
     {
-        rb.MoveRotation(rb.rotation * Quaternion.Euler((rotation + -cameraRotation).normalized));
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, rb.rotation * Quaternion.Euler((rotation + -cameraRotation).normalized), cameraSmoothness));
+        //Quaternion.Slerp(rb.rotation, rb.rotation * Quaternion.Euler((rotation + -cameraRotation).normalized), cameraSmoothness);
 
         // Lock the z axis
         float z = transform.eulerAngles.z;

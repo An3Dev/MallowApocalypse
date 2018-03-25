@@ -7,6 +7,8 @@ public class EnemyMovement : MonoBehaviour {
 
     Animator animator;
 
+    bool startedAttacking = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -28,8 +30,6 @@ public class EnemyMovement : MonoBehaviour {
 
     public void Die()
     {
-
-
         animator.SetTrigger("Died");
         agent.enabled = false;
         // Destroys itself
@@ -45,6 +45,7 @@ public class EnemyMovement : MonoBehaviour {
         // Destroys itself
         Destroy(transform.gameObject, 0.35f);
         IncreaseMoney(Variables.mallowKillRewardValue);
+
     }
 
     // Increases the money the player has

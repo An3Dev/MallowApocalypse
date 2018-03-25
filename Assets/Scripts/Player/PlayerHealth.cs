@@ -21,8 +21,10 @@ public class PlayerHealth : MonoBehaviour {
     [SerializeField]
     GameController gameController;
 
-    float health = Variables.playerHealth;
+    [SerializeField]
+    SphereCollider playerCollider;
 
+    float health = Variables.playerHealth;
 	// Use this for initialization
 	void Start () {
 		
@@ -30,7 +32,7 @@ public class PlayerHealth : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (health < 1)
+		if (health <= 0)
         {
             isPlayerDead = true;
         }
@@ -47,12 +49,17 @@ public class PlayerHealth : MonoBehaviour {
             {
                 gun.AddComponent<Rigidbody>();
             }
+            playerCollider.enabled = false;
             
 
             UIAnimator.SetTrigger("GameOver");
 
-            // Change value of health bar
-            managerOfUI.ChangeHealthBar(health);
+            //// Change value of health bar if damage clip finished
+            //if (UIAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+            //{
+            //    Debug.Log("Hello");
+            //    managerOfUI.ChangeHealthBar(health);
+            //}
         }
 
         if (isPlayerDead && Input.GetMouseButtonDown(0))
@@ -69,7 +76,7 @@ public class PlayerHealth : MonoBehaviour {
             UIAnimator.SetTrigger("Damaged");
             // Change value of health bar
             managerOfUI.ChangeHealthBar(health);
-            
+
         }
     }
         

@@ -53,8 +53,5 @@ public class EnemyProgression : MonoBehaviour {
             agent.acceleration = Variables.mallowBeginningAcceleration;
         }
 
-        //Debug.Log(EnemyProgression.waveNum);
-        Debug.Log("Speed: " + agent.speed);
-        Debug.Log("Acceleration: " + agent.acceleration);
     }
 }

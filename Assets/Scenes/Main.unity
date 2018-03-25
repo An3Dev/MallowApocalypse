@@ -205,6 +205,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 70191796}
+  - component: {fileID: 70191797}
   m_Layer: 0
   m_Name: UpgradeManager
   m_TagString: Untagged
@@ -225,6 +226,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &70191797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70191795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a235d8383765bf04291ee152dbfe70f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  increasePreviewFireRateText: {fileID: 1020691116}
+  fireRateCostText: {fileID: 1708945503}
+  fireRateCostButton: {fileID: 1355596134}
+  fireRateIncreasePreview: {fileID: 1020691116}
 --- !u!1 &195300955
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +394,7 @@ RectTransform:
   - {fileID: 1191835292}
   - {fileID: 1355596132}
   - {fileID: 1323551933}
+  - {fileID: 1020691115}
   m_Father: {fileID: 665993309}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -518,7 +535,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1943727951}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -813,7 +830,7 @@ RectTransform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1943727951}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1004,7 +1021,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UnpauseGame
+          m_StringArgument: SetNormalTime
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1159,7 +1176,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: PauseGame
+          m_StringArgument: SlowDownTime
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1360,20 +1377,20 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 592446632}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1306523349}
   - {fileID: 275281094}
   m_Father: {fileID: 1943727951}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 279.98398}
+  m_SizeDelta: {x: -476.26178, y: 100}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!1001 &631522979
 Prefab:
   m_ObjectHideFlags: 0
@@ -1526,6 +1543,21 @@ Prefab:
       propertyPath: lookSensitivity
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 65182597145857060, guid: 7c3ef67b1845a804e99bf27ef36020bc,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65938915371639170, guid: 7c3ef67b1845a804e99bf27ef36020bc,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65299822375085976, guid: 7c3ef67b1845a804e99bf27ef36020bc,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 153254041928495982, guid: 7c3ef67b1845a804e99bf27ef36020bc, type: 2}
     - {fileID: 114769783833033180, guid: 7c3ef67b1845a804e99bf27ef36020bc, type: 2}
@@ -1654,7 +1686,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -175, y: -0.00001640936}
+  m_AnchoredPosition: {x: -175, y: -0.00004769228}
   m_SizeDelta: {x: 350, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &665993310
@@ -1987,20 +2019,20 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 851351471}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 551042997}
   - {fileID: 234351624}
   m_Father: {fileID: 1943727951}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 279.98398}
+  m_SizeDelta: {x: -476.26178, y: 100}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &916811531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,7 +2213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.222}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2419,6 +2451,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 991261482}
+--- !u!1 &1020691114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1020691115}
+  - component: {fileID: 1020691117}
+  - component: {fileID: 1020691116}
+  m_Layer: 5
+  m_Name: IncreasePreview
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1020691115
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1020691114}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000019, y: 1.0000019, z: 1.0000019}
+  m_Children: []
+  m_Father: {fileID: 258204205}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -123, y: -17}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1020691116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1020691114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 60 + 10 / minute
+--- !u!222 &1020691117
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1020691114}
 --- !u!1 &1062053576
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,7 +2621,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1943727951}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2749,7 +2855,6 @@ MonoBehaviour:
   gunSmokeEnabled: 0
   audioEnabled: 0
   fireRate: 300
-  bulletForce: 7000
   bulletsLeftInMagazine: 0
   playerAnimator: {fileID: 1166810403}
   playerAudio: {fileID: 631522981}
@@ -2789,6 +2894,12 @@ MonoBehaviour:
   gun: {fileID: 631522980}
   UIAnimator: {fileID: 1943727952}
   gameController: {fileID: 2113459436}
+  playerCollider: {fileID: 1166810408}
+--- !u!135 &1166810408 stripped
+SphereCollider:
+  m_PrefabParentObject: {fileID: 135547625756215092, guid: 7c3ef67b1845a804e99bf27ef36020bc,
+    type: 2}
+  m_PrefabInternal: {fileID: 631522979}
 --- !u!198 &1172418202 stripped
 ParticleSystem:
   m_PrefabParentObject: {fileID: 198036174517330826, guid: 8c6288f7fa7c1e14cac218ebc49353e1,
@@ -3097,7 +3208,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Increase Fire Rate\n       + 10 / min"
+  m_Text: Increase Fire Rate
 --- !u!222 &1323551935
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3126,7 +3237,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1339547012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.68, y: 0, z: 5.5599995}
+  m_LocalPosition: {x: 21.02, y: 0, z: 5.5599995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 768319007}
@@ -3207,7 +3318,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1355596135}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 70191795}
+        m_MethodName: SendMessage
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: UpgradeFireRate
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1355596135
@@ -3265,7 +3387,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1429805078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.73, y: 0, z: 5.5599995}
+  m_LocalPosition: {x: -7.94, y: 0, z: 5.5599995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 768319007}
@@ -3327,7 +3449,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1943727951}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3645,7 +3767,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1943727951}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -3753,7 +3875,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1943727951}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3851,7 +3973,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.713
+  m_MatchWidthOrHeight: 0.697
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3886,6 +4008,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 851351472}
   - {fileID: 592446633}
   - {fileID: 443166489}
   - {fileID: 1559713874}
@@ -3893,7 +4016,6 @@ RectTransform:
   - {fileID: 1841272293}
   - {fileID: 1925871317}
   - {fileID: 1139155294}
-  - {fileID: 851351472}
   - {fileID: 1615348197}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -3934,7 +4056,7 @@ MonoBehaviour:
   moneyText: {fileID: 1841272294}
   healthBar: {fileID: 275281095}
   ammoBar: {fileID: 234351625}
-  healthBarTransitionSmoothness: 5
+  healthBarTransitionSmoothness: 0.05
   ammoBarTransitionSmoothness: 100
   waveText: {fileID: 1925871318}
   UIAnimator: {fileID: 1943727952}
@@ -4122,7 +4244,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2029753921}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.73, y: 0, z: 5.5599995}
+  m_LocalPosition: {x: 7.25, y: 0, z: 5.5599995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 768319007}
@@ -4154,7 +4276,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2035362707}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 2, z: 0}
+  m_LocalPosition: {x: 7, y: 2, z: 0}
   m_LocalScale: {x: 10, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 40379492}

@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour {
         // change health bar smoothly
         if (healthBar.value != targetHealth)
         {
-            healthBar.value = Mathf.Lerp(healthBar.value, targetHealth, healthBarTransitionSmoothness * Time.deltaTime);
+            healthBar.value = targetHealth;
         }
 
         // No smooth change

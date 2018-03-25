@@ -57,7 +57,7 @@ public class EnemyManager : MonoBehaviour {
             {
             int randomSpawnPoint = Random.Range(0, spawnPoints.Length);
             // Spawn mallow
-            GameObject mallow = Instantiate(mallowPrefab, spawnPoints[randomSpawnPoint].transform.position, Quaternion.identity);
+            Instantiate(mallowPrefab, spawnPoints[randomSpawnPoint].transform.position, Quaternion.identity);
             // Increases count of spawns
             numOfTotalSpawned++;
             timeOfLastSpawn = Time.timeSinceLevelLoad;
@@ -77,8 +77,6 @@ public class EnemyManager : MonoBehaviour {
 
                 // Progress to next wave
                 GameController.waveNum += 1;
-
-                Debug.Log("Come on: " + GameController.waveNum);
 
                 waveNum = GameController.waveNum;
                 managerOfUI.NewWave((float)waveNum);

@@ -21,7 +21,6 @@ public class PlayerShoot : MonoBehaviour {
     [SerializeField]
     float fireRate; // Shots per Minute
 
-    [SerializeField]
     float bulletForce;
 
     float timeSinceLastFire = 0;
@@ -54,11 +53,13 @@ public class PlayerShoot : MonoBehaviour {
         bulletsLeftInMagazine = Variables.chocolateGunBulletsPerReload;
         fireRate = Variables.chocolateGunFireRate;
         reloadTime = 0;
+        bulletForce = Variables.bulletForce;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (Input.GetButton("Fire1"))
+        fireRate = Variables.chocolateGunFireRate;
+        if (Input.GetButton("Fire1"))
         {
             // If mouse isn't over ui then shoot
             if (!EventSystem.current.IsPointerOverGameObject())
@@ -103,7 +104,7 @@ public class PlayerShoot : MonoBehaviour {
             
         }
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Reload"))
         {
             Reload();
         }
