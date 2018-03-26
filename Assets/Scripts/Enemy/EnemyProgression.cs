@@ -48,8 +48,6 @@ public class EnemyProgression : MonoBehaviour {
             agent.acceleration = Variables.mallowBeginningAcceleration;
         }
 
-        Debug.Log("Speed: " + agent.speed + " Acceleration: " + agent.acceleration);
-
         // Mallow spawn rate increase
 
         // if minimun spawn interval hasn't been reached

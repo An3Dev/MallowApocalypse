@@ -10,7 +10,7 @@ public class Variables{
     public static int chocolateBulletDamage = 50;
     public static int chocolateGunFireRate = 60;
     public static float chocolateGunReloadTime = 1;
-    public static int chocolateGunBulletsPerReload = 100;
+    public static int chocolateGunBulletsPerReload = 5;
     public static float bulletForce = 10000;
 
     // Player info
@@ -55,8 +55,11 @@ public class Variables{
     public static int fireRateCostIncreaseAmount = 10;
     public static int maxFireRate = 500;
     public static int playerHealthBeginningCost = 20;
-    public static int playerHealthIncreaseAmount = 10;
+    public static int playerHealthIncreaseAmount = 20;
     public static int playerHealthCostIncreaseAmount = 20;
-
+    public static int maxPlayerHealth = 800;
+    public static int bulletsPerReloadBeginningCost = 10;
+    public static int bulletsPerReloadIncreaseAmount = 5;
+    public static int bulletsPerReloadCostIncreaseAmount = 10;
 
 }

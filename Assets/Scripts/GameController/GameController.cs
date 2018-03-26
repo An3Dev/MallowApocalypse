@@ -37,21 +37,22 @@ public class GameController : MonoBehaviour {
     {
          // Chocolate gun info
         Variables. chocolateGunName = "Chocolate Blaster";
-        Variables. chocolateBulletDamage = 50;
-        Variables. chocolateGunFireRate = 60;
+        Variables.chocolateBulletDamage = 50;
+        Variables.chocolateGunFireRate = 60;
         Variables. chocolateGunReloadTime = 1;
-        Variables. chocolateGunBulletsPerReload = 5;
-        Variables.bulletForce = 10000;
+        Variables.chocolateGunBulletsPerReload = 5;
+        Variables. bulletForce = 10000;
 
         // Player info
-        Variables. playerHealth = 300;
+        Variables.playerHealth = 300;
+        Variables.beginningPlayerHealth = 300;
 
         // Mallow info
-        Variables. mallowHealth = 100;
+        Variables.mallowHealth = 100;
         Variables.mallowBeginningHealth = 100;
         Variables.mallowHealthIncrease = 25;
         Variables.mallowMaxHealth = 300;
-        Variables. mallowDamage = 50;
+        Variables.mallowDamage = 50;
         Variables.mallowBeginningDamage = 50;
         Variables.mallowDamageIncrease = 10;
         Variables.mallowMaxDamage = 200;
@@ -61,25 +62,31 @@ public class GameController : MonoBehaviour {
         Variables. mallowTopAcceleration = 15;
         Variables. speedIncreasePerWave = .5f;
         Variables. accelerationIncreasePerWave = .5f;
-        Variables. spawnInterval = 3f; // Spawns per second
-        Variables.spawnIntervalDecrease = .25f; // Spawn decrease every wave
+        Variables. spawnInterval = 5f; // Spawns per second
+        Variables. spawnIntervalDecrease = .25f; // Spawn decrease every wave
         Variables. minSpawnInterval = 1f;
-        Variables.beginningSpawnInterval = 5;
+        Variables. beginningSpawnInterval = 5;
         Variables. mallowKillRewardValue = 1; // In dollars
 
-        ////Wall info
+        //Wall info
         //Variables. wallMovementPerWave = 10f;
 
         //Wave info
-        Variables. firstWaveMallowSpawns = 10;
-        Variables. mallowSpawnIncreasePerWave = 5f;
-        Variables. waveNum = 1;
+        Variables.firstWaveMallowSpawns = 10;
+        Variables. mallowSpawnIncreasePerWave = 5;
+        Variables.waveNum = 1;
 
         // Money
         Variables. money = 0;
 
         // Upgrade info
-        Variables. fireRateBeginningCost = 10;
-        Variables. fireRateIncreaseAmount = 10;
+        Variables.fireRateBeginningCost = 10;
+        Variables.fireRateIncreaseAmount = 10;
+        Variables.fireRateCostIncreaseAmount = 10;
+        Variables.maxFireRate = 500;
+        Variables.playerHealthBeginningCost = 20;
+        Variables.playerHealthIncreaseAmount = 10;
+        Variables.playerHealthCostIncreaseAmount = 20;
+        Variables.maxPlayerHealth = 800;
     }
 }
