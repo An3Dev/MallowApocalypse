@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour {
     private float jointMaxForce = 0;
 
     private PlayerMotor motor;
+
+    float yRot;
     //private ConfigurableJoint joint;
     void Start()
     {
@@ -45,7 +47,29 @@ public class PlayerController : MonoBehaviour {
 
 
         // Calculate rotation as a 3D vector3 (turning around)
-        float yRot = Input.GetAxis("Mouse X");
+
+
+        
+
+
+        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
+        {
+            yRot = Input.GetAxis("Mouse X");
+        }
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            // if mouse is in left part of screen
+            if (Input.mousePosition.x < Screen.width / 4 * 3)
+            {
+                yRot = Input.GetAxis("Mouse X");
+
+            }
+            else
+            {
+                yRot = 0;
+            }
+        }
 
         Vector3 rotation = new Vector3(0, yRot, 0) * lookSensitivity;
 

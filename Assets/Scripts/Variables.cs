@@ -14,7 +14,6 @@ public class Variables{
     public static float bulletForce = 10000;
 
     // Player info
-    public static int playerHealth = 300;
     public static int beginningPlayerHealth = 300;
 
     // Mallow info
@@ -57,7 +56,7 @@ public class Variables{
     public static int playerHealthBeginningCost = 20;
     public static int playerHealthIncreaseAmount = 20;
     public static int playerHealthCostIncreaseAmount = 20;
-    public static int maxPlayerHealth = 800;
+    public static int maxPlayerHealth = 300;
     public static int bulletsPerReloadBeginningCost = 10;
     public static int bulletsPerReloadIncreaseAmount = 5;
     public static int bulletsPerReloadCostIncreaseAmount = 10;

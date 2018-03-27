@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour {
     [SerializeField]
     SphereCollider playerCollider;
 
-    float health = Variables.playerHealth;
+    public static float health = Variables.beginningPlayerHealth;
 	// Use this for initialization
 	void Start () {
 		

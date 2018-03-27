@@ -55,58 +55,113 @@ public class PlayerShoot : MonoBehaviour {
         reloadTime = 0;
         bulletForce = Variables.bulletForce;
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    // Update is called once per frame
+    void FixedUpdate() {
         fireRate = Variables.chocolateGunFireRate;
-        if (Input.GetButton("Fire1"))
+        if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
         {
-            // If mouse isn't over ui then shoot
-            if (!EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetButton("Fire1"))
             {
-                // if needs to reload
-                if (bulletsLeftInMagazine < 1)
+                // If mouse isn't over ui then shoot
+                if (!EventSystem.current.IsPointerOverGameObject())
                 {
-                    Reload();
-
-                }
-
-                // If fire rate time passed
-                // Shoots 1 shot per second
-                if (Time.timeSinceLevelLoad - timeSinceLastFire > 60 / fireRate && !isReloading && !PlayerHealth.isPlayerDead)
-                {
-
-                    GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation * Quaternion.Euler(90, 0, 0));
-                    Rigidbody rb = bullet.GetComponent<Rigidbody>();
-                    // Apply force
-                    rb.AddForce(Camera.main.transform.forward * bulletForce * Time.fixedDeltaTime);
-                    if (gunSmokeEnabled)
+                    // if needs to reload
+                    if (bulletsLeftInMagazine < 1)
                     {
-                        gunSmoke.Play();
+                        Reload();
+
                     }
 
-
-                    if (audioEnabled)
+                    // If fire rate time passed
+                    // Shoots 1 shot per second
+                    if (Time.timeSinceLevelLoad - timeSinceLastFire > 60 / fireRate && !isReloading && !PlayerHealth.isPlayerDead)
                     {
-                        playerAudio.clip = gunShotsClip;
-                        playerAudio.volume = 0.4f;
-                        playerAudio.Play();
-                    }
-                    timeSinceLastFire = Time.timeSinceLevelLoad;
-                    // Subtracts bullets from magazine
-                    bulletsLeftInMagazine -= 1;
-                    managerOfUI.ChangeAmmoBar(Mathf.Round(bulletsLeftInMagazine));
 
-                    // Destroys bullet after 5 seconds
-                    Destroy(bullet, 5f);
+                        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation * Quaternion.Euler(90, 0, 0));
+                        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                        // Apply force
+                        rb.AddForce(Camera.main.transform.forward * bulletForce * Time.fixedDeltaTime);
+                        if (gunSmokeEnabled)
+                        {
+                            gunSmoke.Play();
+                        }
+
+
+                        if (audioEnabled)
+                        {
+                            playerAudio.clip = gunShotsClip;
+                            playerAudio.volume = 0.4f;
+                            playerAudio.Play();
+                        }
+                        timeSinceLastFire = Time.timeSinceLevelLoad;
+                        // Subtracts bullets from magazine
+                        bulletsLeftInMagazine -= 1;
+                        managerOfUI.ChangeAmmoBar(Mathf.Round(bulletsLeftInMagazine));
+
+                        // Destroys bullet after 5 seconds
+                        Destroy(bullet, 5f);
+                    }
                 }
+
             }
-            
+
+
+            if (Input.GetButton("Reload"))
+            {
+                Reload();
+            }
         }
 
-        if (Input.GetButton("Reload"))
+        if (Application.platform == RuntimePlatform.Android)
         {
-            Reload();
+            if (Input.touchCount > 0 && Input.GetTouch(1).position.x > Screen.width / 4 * 3)
+            {
+                // If mouse isn't over ui then shoot
+                if (!EventSystem.current.IsPointerOverGameObject())
+                {
+                    // if needs to reload
+                    if (bulletsLeftInMagazine < 1)
+                    {
+                        Reload();
+
+                    }
+
+                    // If fire rate time passed
+                    // Shoots 1 shot per second
+                    if (Time.timeSinceLevelLoad - timeSinceLastFire > 60 / fireRate && !isReloading && !PlayerHealth.isPlayerDead)
+                    {
+
+                        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation * Quaternion.Euler(90, 0, 0));
+                        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                        // Apply force
+                        rb.AddForce(Camera.main.transform.forward * bulletForce * Time.fixedDeltaTime);
+                        if (gunSmokeEnabled)
+                        {
+                            gunSmoke.Play();
+                        }
+
+
+                        if (audioEnabled)
+                        {
+                            playerAudio.clip = gunShotsClip;
+                            playerAudio.volume = 0.4f;
+                            playerAudio.Play();
+                        }
+                        timeSinceLastFire = Time.timeSinceLevelLoad;
+                        // Subtracts bullets from magazine
+                        bulletsLeftInMagazine -= 1;
+                        managerOfUI.ChangeAmmoBar(Mathf.Round(bulletsLeftInMagazine));
+
+                        // Destroys bullet after 5 seconds
+                        Destroy(bullet, 5f);
+                    }
+                }
+
+            }
+
+
+
         }
 
         if (isReloading)

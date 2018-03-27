@@ -29,6 +29,9 @@ public class UpgradeManager : MonoBehaviour {
     [SerializeField]
     Text healthIncreasePreview;
 
+    [SerializeField]
+    UIManager managerOfUI;
+
     int healthUpgradeCurrentCost;
 
     // Use this for initialization
@@ -66,10 +69,8 @@ public class UpgradeManager : MonoBehaviour {
         // Health
         healthUpgradeCostText.text = "$" + healthUpgradeCurrentCost;
 
-        
-
         // Disable button if player doesn't have enough money or item is maxed out
-        if (Variables.money < healthUpgradeCurrentCost || Variables.playerHealth >= Variables.maxPlayerHealth)
+        if (Variables.money < healthUpgradeCurrentCost || PlayerHealth.health >= Variables.maxPlayerHealth)
         {
             healthUpgradeCostButton.interactable = false;
         }
@@ -78,15 +79,15 @@ public class UpgradeManager : MonoBehaviour {
             healthUpgradeCostButton.interactable = true;
         }
 
-        if (Variables.playerHealth >= Variables.maxPlayerHealth)
+        if (PlayerHealth.health >= Variables.maxPlayerHealth)
         {
-            Variables.playerHealth = Variables.maxPlayerHealth;
+            Variables.beginningPlayerHealth = Variables.maxPlayerHealth;
             healthIncreasePreview.text = "MAX";
             healthUpgradeCostText.text = "$Gazillion";
         }
-        else if (Variables.playerHealth < Variables.maxPlayerHealth)
+        else if (PlayerHealth.health < Variables.beginningPlayerHealth)
         {
-            healthIncreasePreview.text = Variables.playerHealth + " + " + Variables.playerHealthIncreaseAmount;
+            healthIncreasePreview.text = PlayerHealth.health + " + " + Variables.playerHealthIncreaseAmount;
         }
     }
 
@@ -99,8 +100,11 @@ public class UpgradeManager : MonoBehaviour {
 
     void UpgradePlayerHealth()
     {
-        Variables.playerHealth += Variables.playerHealthIncreaseAmount;
+        PlayerHealth.health += Variables.playerHealthIncreaseAmount;
         Variables.money -= healthUpgradeCurrentCost;
         healthUpgradeCurrentCost += Variables.playerHealthCostIncreaseAmount;
+        managerOfUI.ChangeHealthBar(PlayerHealth.health);
+        //managerOfUI.Healed();
+
     }
 }

@@ -42,10 +42,11 @@ public class UIManager : MonoBehaviour {
         // Sets money text
         moneyText.text = "$" + Variables.money;
 
-        // change health bar smoothly
+        // change health bar
         if (healthBar.value != targetHealth)
         {
             healthBar.value = targetHealth;
+            
         }
 
         // No smooth change
@@ -60,7 +61,8 @@ public class UIManager : MonoBehaviour {
     public void ChangeHealthBar(float newValue)
     {
         // Converts to percentage and temporarily saves for smooth transition
-        targetHealth = newValue / (Variables.playerHealth / 100);
+        targetHealth = newValue / (Variables.beginningPlayerHealth / 100);
+        Debug.Log(Variables.beginningPlayerHealth);
     }
 
     public void ChangeAmmoBar(float newValue)
@@ -75,5 +77,10 @@ public class UIManager : MonoBehaviour {
         
         
         UIAnimator.SetTrigger("NewWave");
+    }
+
+    public void Healed()
+    {
+        UIAnimator.SetTrigger("Healed");
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
-
     public static int waveNum = 1;
 
     // Use this for initialization
@@ -35,7 +34,7 @@ public class GameController : MonoBehaviour {
 
     void ResetStaticVariables()
     {
-         // Chocolate gun info
+        // Chocolate gun info
         Variables. chocolateGunName = "Chocolate Blaster";
         Variables.chocolateBulletDamage = 50;
         Variables.chocolateGunFireRate = 60;
@@ -44,7 +43,6 @@ public class GameController : MonoBehaviour {
         Variables. bulletForce = 10000;
 
         // Player info
-        Variables.playerHealth = 300;
         Variables.beginningPlayerHealth = 300;
 
         // Mallow info
@@ -85,8 +83,12 @@ public class GameController : MonoBehaviour {
         Variables.fireRateCostIncreaseAmount = 10;
         Variables.maxFireRate = 500;
         Variables.playerHealthBeginningCost = 20;
-        Variables.playerHealthIncreaseAmount = 10;
+        Variables.playerHealthIncreaseAmount = 20;
         Variables.playerHealthCostIncreaseAmount = 20;
-        Variables.maxPlayerHealth = 800;
+        Variables.maxPlayerHealth = 300;
+        Variables.bulletsPerReloadBeginningCost = 10;
+        Variables.bulletsPerReloadIncreaseAmount = 5;
+        Variables.bulletsPerReloadCostIncreaseAmount = 10;
+
     }
 }
