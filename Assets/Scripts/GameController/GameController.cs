@@ -89,6 +89,6 @@ public class GameController : MonoBehaviour {
         Variables.bulletsPerReloadBeginningCost = 10;
         Variables.bulletsPerReloadIncreaseAmount = 5;
         Variables.bulletsPerReloadCostIncreaseAmount = 10;
-
-    }
+        PlayerHealth.health = Variables.beginningPlayerHealth;
+}
 }

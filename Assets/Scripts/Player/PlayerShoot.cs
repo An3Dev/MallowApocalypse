@@ -115,7 +115,7 @@ public class PlayerShoot : MonoBehaviour {
 
         if (Application.platform == RuntimePlatform.Android)
         {
-            if (Input.touchCount > 0 && Input.GetTouch(1).position.x > Screen.width / 4 * 3)
+            if (Input.touchCount > 0 && Input.GetTouch(1).position.x > Screen.width / 4 * 3 || Input.GetTouch(0).position.x > Screen.width / 4 * 3)
             {
                 // If mouse isn't over ui then shoot
                 if (!EventSystem.current.IsPointerOverGameObject())
