@@ -44,7 +44,7 @@ public class EnemyMovement : MonoBehaviour {
         agent.enabled = false;
         // Destroys itself
         Destroy(transform.gameObject, 0.35f);
-        IncreaseMoney(Variables.mallowKillRewardValue);
+        //IncreaseMoney(Variables.mallowKillRewardValue);
 
     }
 
