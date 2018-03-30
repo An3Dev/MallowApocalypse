@@ -78,29 +78,44 @@ public class PlayerShoot : MonoBehaviour {
                     if (Time.timeSinceLevelLoad - timeSinceLastFire > 60 / fireRate && !isReloading && !PlayerHealth.isPlayerDead)
                     {
 
-                        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation * Quaternion.Euler(90, 0, 0));
-                        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-                        // Apply force
-                        rb.AddForce(Camera.main.transform.forward * bulletForce * Time.fixedDeltaTime);
-                        if (gunSmokeEnabled)
+                        
+                        int x = Screen.width / 2;
+                        int y = Screen.height / 2;
+
+                        Ray ray = Camera.main.ScreenPointToRay(new Vector3(x, y));
+                        RaycastHit hit;
+
+                        if (Physics.Raycast(ray, out hit))
                         {
-                            gunSmoke.Play();
+                            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.LookRotation(hit.normal) * Quaternion.Euler(90, 0, 0));
+                            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                            // Apply force
+                            rb.AddForce(Camera.main.transform.forward * bulletForce * Time.fixedDeltaTime);
+                            bullet.transform.LookAt(rb.velocity.normalized);
+                            bullet.transform.rotation *= Quaternion.Euler(90, 0, 0);
+
+                            if (gunSmokeEnabled)
+                            {
+                                gunSmoke.Play();
+                            }
+
+
+                            if (audioEnabled)
+                            {
+                                playerAudio.clip = gunShotsClip;
+                                playerAudio.volume = 0.4f;
+                                playerAudio.Play();
+                            }
+                            timeSinceLastFire = Time.timeSinceLevelLoad;
+                            // Subtracts bullets from magazine
+                            bulletsLeftInMagazine -= 1;
+                            managerOfUI.ChangeAmmoBar(Mathf.Round(bulletsLeftInMagazine));
+
+                            // Destroys bullet after 5 seconds
+                            Destroy(bullet, 5f);
                         }
 
-
-                        if (audioEnabled)
-                        {
-                            playerAudio.clip = gunShotsClip;
-                            playerAudio.volume = 0.4f;
-                            playerAudio.Play();
-                        }
-                        timeSinceLastFire = Time.timeSinceLevelLoad;
-                        // Subtracts bullets from magazine
-                        bulletsLeftInMagazine -= 1;
-                        managerOfUI.ChangeAmmoBar(Mathf.Round(bulletsLeftInMagazine));
-
-                        // Destroys bullet after 5 seconds
-                        Destroy(bullet, 5f);
+                        
                     }
                 }
 
