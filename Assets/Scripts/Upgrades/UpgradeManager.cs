@@ -19,7 +19,6 @@ public class UpgradeManager : MonoBehaviour {
     int fireRateCurrentCost;
 
     // Player health
-
     [SerializeField]
     Text healthUpgradeCostText;
 
@@ -29,15 +28,31 @@ public class UpgradeManager : MonoBehaviour {
     [SerializeField]
     Text healthIncreasePreview;
 
+    int healthUpgradeCurrentCost;
+
+    // Ammo Magazine capacity
+    [SerializeField]
+    Text magazineUpgradeCostText;
+
+    [SerializeField]
+    Button magazineUpgradeCostButton;
+
+    [SerializeField]
+    Text magazineIncreasePreview;
+
+    int magazineUpgradeCurrentCost;
+
+
     [SerializeField]
     UIManager managerOfUI;
 
-    int healthUpgradeCurrentCost;
+    
 
     // Use this for initialization
     void Start () {
         fireRateCurrentCost = Variables.fireRateBeginningCost;
         healthUpgradeCurrentCost = Variables.playerHealthBeginningCost;
+        magazineUpgradeCurrentCost = Variables.magazineCapacityBeginningCost;
 	}
 	
 	// Update is called once per frame
@@ -81,13 +96,37 @@ public class UpgradeManager : MonoBehaviour {
 
         if (PlayerHealth.health >= Variables.maxPlayerHealth)
         {
-            Variables.beginningPlayerHealth = Variables.maxPlayerHealth;
+            PlayerHealth.health = Variables.maxPlayerHealth;
             healthIncreasePreview.text = "MAX";
             healthUpgradeCostText.text = "$Gazillion";
         }
         else if (PlayerHealth.health < Variables.beginningPlayerHealth)
         {
             healthIncreasePreview.text = PlayerHealth.health + " + " + Variables.playerHealthIncreaseAmount;
+        }
+
+        // Magazine capacity
+        magazineUpgradeCostText.text = "$" + magazineUpgradeCurrentCost;
+
+        // Disable button if player doesn't have enough money or item is maxed out
+        if (Variables.money < magazineUpgradeCurrentCost || Variables.magazineCapacity >= Variables.maxMagazineCapacity)
+        {
+            magazineUpgradeCostButton.interactable = false;
+        }
+        else
+        {
+            magazineUpgradeCostButton.interactable = true;
+        }
+
+        if (Variables.magazineCapacity >= Variables.maxMagazineCapacity)
+        {
+            Variables.magazineCapacity = Variables.maxMagazineCapacity;
+            healthIncreasePreview.text = "MAX";
+            healthUpgradeCostText.text = "$Gazillion";
+        }
+        else if (Variables.magazineCapacity < Variables.maxMagazineCapacity)
+        {
+            magazineIncreasePreview.text = Variables.magazineCapacity + " + " + Variables.magazineCapacityIncreaseAmount;
         }
     }
 
@@ -106,5 +145,13 @@ public class UpgradeManager : MonoBehaviour {
         managerOfUI.ChangeHealthBar(PlayerHealth.health);
         //managerOfUI.Healed();
 
+    }
+
+    void UpgradeMagazineCapacity()
+    {
+        Variables.maxMagazineCapacity += Variables.magazineCapacityIncreaseAmount;
+        Variables.money -= magazineUpgradeCurrentCost;
+        magazineUpgradeCurrentCost += Variables.magazineCapacityCostIncreaseAmount;
+        managerOfUI.ChangeAmmoBar(PlayerShoot.bulletsLeftInMagazine);
     }
 }

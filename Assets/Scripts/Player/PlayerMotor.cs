@@ -11,13 +11,71 @@ public class PlayerMotor : MonoBehaviour {
     private Vector3 cameraRotation = Vector3.zero;
     private Vector3 thrusterForce = Vector3.zero;
 
+    private float rotX;
+    private float rotY;
+    private Vector3 origRot;
+
+    [SerializeField]
+    float rotSpeed = 0.1f;
+
+
+    [SerializeField]
+    public float dir = -1;
+
+    [SerializeField]
+    GameObject player;
+
     private float cameraSmoothness = 10;
 
     private Rigidbody rb;
 
+    private Touch initTouch = new Touch();
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        origRot = cam.transform.eulerAngles;
+        rotX = origRot.x;
+        rotY = origRot.y;
+    }
+
+    void FixedUpdate()
+    {
+        PerformMovement();
+        if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            PerformRotation();
+        }
+        
+        // If on mobile use different touch dynamics
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            foreach(Touch touch in Input.touches)
+            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    initTouch = touch;
+                }
+                else if (touch.phase == TouchPhase.Moved)
+                {
+                    // swiping action
+                    float deltaX = initTouch.position.x - touch.position.x;
+                    float deltaY = initTouch.position.y - touch.position.y;
+                    rotX -= deltaY * Time.deltaTime * rotSpeed * dir;
+                    rotY += deltaX * Time.deltaTime * rotSpeed * dir;
+
+                    Mathf.Clamp(rotX, -45f, 45f);
+
+                    player.transform.eulerAngles = new Vector3(rotX, rotY , 0f);
+                }
+                else if (touch.phase == TouchPhase.Ended)
+                {
+                    initTouch = new Touch();
+                }
+            }
+        }
+
     }
 
     // Gets a movement vector
@@ -36,12 +94,6 @@ public class PlayerMotor : MonoBehaviour {
     public void RotateCamera(Vector3 _cameraRotation)
     {
         cameraRotation = _cameraRotation;
-    }
-
-    void FixedUpdate()
-    {
-        PerformMovement();
-        PerformRotation();
     }
 
     void PerformMovement()

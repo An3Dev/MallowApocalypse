@@ -39,8 +39,10 @@ public class GameController : MonoBehaviour {
         Variables.chocolateBulletDamage = 50;
         Variables.chocolateGunFireRate = 60;
         Variables. chocolateGunReloadTime = 1;
-        Variables.chocolateGunBulletsPerReload = 5;
+        Variables.magazineCapacity = 5;
+        Variables.maxMagazineCapacity = 100;
         Variables. bulletForce = 10000;
+        PlayerShoot.bulletsLeftInMagazine = Variables.magazineCapacity;
 
         // Player info
         Variables.beginningPlayerHealth = 300;
@@ -90,5 +92,8 @@ public class GameController : MonoBehaviour {
         Variables.bulletsPerReloadIncreaseAmount = 5;
         Variables.bulletsPerReloadCostIncreaseAmount = 10;
         PlayerHealth.health = Variables.beginningPlayerHealth;
+        Variables.magazineCapacityBeginningCost = 20;
+        Variables.magazineCapacityIncreaseAmount = 5;
+        Variables.magazineCapacityCostIncreaseAmount = 10;
 }
 }

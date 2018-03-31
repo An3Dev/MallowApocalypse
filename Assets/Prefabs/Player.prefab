@@ -23,9 +23,7 @@ GameObject:
   - component: {fileID: 54353613721139870}
   - component: {fileID: 114368852248359928}
   - component: {fileID: 114390828388440886}
-  - component: {fileID: 114073994377706082}
   - component: {fileID: 114769783833033180}
-  - component: {fileID: 114310352493295364}
   - component: {fileID: 153254041928495982}
   m_Layer: 0
   m_Name: Player
@@ -326,6 +324,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -567,41 +566,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1944365270588630}
   m_Enabled: 1
---- !u!114 &114073994377706082
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286559460581106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c3984d43a68dc4e8052cbea8bbef4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon:
-    name: ChocolateGun
-    damage: 10
-    range: 50
-  cam: {fileID: 20260042145830928}
-  mask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &114310352493295364
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286559460581106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f19d9e0cfd31a74f91c36b30e4c38f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentsToDisable:
-  - {fileID: 114368852248359928}
-  - {fileID: 114390828388440886}
-  - {fileID: 20260042145830928}
-  - {fileID: 81603476471996868}
 --- !u!114 &114368852248359928
 MonoBehaviour:
   m_ObjectHideFlags: 1

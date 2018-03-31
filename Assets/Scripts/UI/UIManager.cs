@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour {
 
     public void ChangeAmmoBar(float newValue)
     {
-        targetAmmo = newValue / ((float) Variables.chocolateGunBulletsPerReload / 100);
+        targetAmmo = newValue / ((float) Variables.magazineCapacity / 100);
         
     }
 

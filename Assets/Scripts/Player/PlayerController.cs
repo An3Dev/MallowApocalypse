@@ -57,19 +57,19 @@ public class PlayerController : MonoBehaviour {
             yRot = Input.GetAxis("Mouse X");
         }
 
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            // if mouse is in left part of screen
-            if (Input.mousePosition.x < Screen.width / 4 * 3)
-            {
-                yRot = Input.GetAxis("Mouse X");
+        //if (Application.platform == RuntimePlatform.Android)
+        //{
+        //    // if mouse is in left part of screen
+        //    if (Input.mousePosition.x < Screen.width / 4 * 3)
+        //    {
+        //        yRot = Input.GetAxis("Mouse X");
 
-            }
-            else
-            {
-                yRot = 0;
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        yRot = 0;
+        //    }
+        //}
 
         Vector3 rotation = new Vector3(0, yRot, 0) * lookSensitivity;
 
