@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
@@ -62,7 +60,6 @@ public class UIManager : MonoBehaviour {
     {
         // Converts to percentage and temporarily saves for smooth transition
         targetHealth = newValue / (Variables.beginningPlayerHealth / 100);
-        Debug.Log(Variables.beginningPlayerHealth);
     }
 
     public void ChangeAmmoBar(float newValue)

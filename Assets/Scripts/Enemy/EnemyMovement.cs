@@ -51,6 +51,6 @@ public class EnemyMovement : MonoBehaviour {
     // Increases the money the player has
     void IncreaseMoney(float moneyIncrease)
     {
-        Variables.money += moneyIncrease;
+        Variables.money += (long)moneyIncrease;
     }
 }

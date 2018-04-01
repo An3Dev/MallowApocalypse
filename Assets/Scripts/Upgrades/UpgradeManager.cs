@@ -149,7 +149,7 @@ public class UpgradeManager : MonoBehaviour {
 
     void UpgradeMagazineCapacity()
     {
-        Variables.maxMagazineCapacity += Variables.magazineCapacityIncreaseAmount;
+        Variables.magazineCapacity += Variables.magazineCapacityIncreaseAmount;
         Variables.money -= magazineUpgradeCurrentCost;
         magazineUpgradeCurrentCost += Variables.magazineCapacityCostIncreaseAmount;
         managerOfUI.ChangeAmmoBar(PlayerShoot.bulletsLeftInMagazine);

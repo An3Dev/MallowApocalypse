@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerShoot : MonoBehaviour {
 
@@ -47,6 +46,11 @@ public class PlayerShoot : MonoBehaviour {
     float reloadStartTime;
     float reloadTime;
 
+    [SerializeField]
+    bool isPointerDown;
+
+    [SerializeField]
+    bool isPointerUp;
 
 	// Use this for initialization
 	void Start () {
@@ -54,81 +58,33 @@ public class PlayerShoot : MonoBehaviour {
         fireRate = Variables.chocolateGunFireRate;
         reloadTime = 0;
         bulletForce = Variables.bulletForce;
+
+        isPointerDown = false;
+        isPointerUp = false;
+
 	}
 
-    // Update is called once per frame
-    void FixedUpdate() {
+    private void Update()
+    {
+
         fireRate = Variables.chocolateGunFireRate;
-        //if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+
+        if (isReloading)
+        {
+            Reload();
+        }
+
+        if (isPointerDown)
+        {
+            Shoot();
+           
+        }
+
+        //else if (isPointerUp && isPointerDown)
         //{
-        //    if (Input.GetButton("Fire1"))
-        //    {
-        //        // If mouse isn't over ui then shoot 
-        //        if (!EventSystem.current.IsPointerOverGameObject())
-        //        {
-        //            // if needs to reload
-        //            if (bulletsLeftInMagazine < 1)
-        //            {
-        //                Reload();
-
-        //            }
-
-        //            // If fire rate time passed
-        //            // Shoots 1 shot per second
-        //            if (Time.timeSinceLevelLoad - timeSinceLastFire > 60 / fireRate && !isReloading && !PlayerHealth.isPlayerDead)
-        //            {
-
-                        
-        //                int x = Screen.width / 2;
-        //                int y = Screen.height / 2;
-
-        //                Ray ray = Camera.main.ScreenPointToRay(new Vector3(x, y));
-        //                RaycastHit hit;
-
-        //                if (Physics.Raycast(ray, out hit))
-        //                {
-        //                    GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.Euler(Vector3.zero));
-        //                    Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        //                    // Apply force
-        //                    bullet.transform.LookAt(hit.point);
-        //                    rb.AddRelativeForce(Camera.main.transform.forward * bulletForce * Time.fixedDeltaTime);
-                            
-                            
-
-        //                    if (gunSmokeEnabled)
-        //                    {
-        //                        gunSmoke.Play();
-        //                    }
-
-
-        //                    if (audioEnabled)
-        //                    {
-        //                        playerAudio.clip = gunShotsClip;
-        //                        playerAudio.volume = 0.4f;
-        //                        playerAudio.Play();
-        //                    }
-        //                    timeSinceLastFire = Time.timeSinceLevelLoad;
-        //                    // Subtracts bullets from magazine
-        //                    bulletsLeftInMagazine -= 1;
-        //                    managerOfUI.ChangeAmmoBar(Mathf.Round(bulletsLeftInMagazine));
-
-        //                    // Destroys bullet after 5 seconds
-        //                    Destroy(bullet, 5f);
-        //                }
-
-                        
-        //            }
-        //        }
-
-        //    }
-
-
-        //    if (Input.GetButton("Reload"))
-        //    {
-        //        Reload();
-        //    }
+        //    // Stop shooting
+           
         //}
-
         
     }
 
@@ -136,6 +92,7 @@ public class PlayerShoot : MonoBehaviour {
     {
         //if (Application.platform == RuntimePlatform.Android)
         //{
+
         // if needs to reload
         if (bulletsLeftInMagazine < 1)
         {
@@ -176,6 +133,7 @@ public class PlayerShoot : MonoBehaviour {
                     playerAudio.Play();
                 }
                 timeSinceLastFire = Time.timeSinceLevelLoad;
+
                 // Subtracts bullets from magazine
                 bulletsLeftInMagazine -= 1;
                 managerOfUI.ChangeAmmoBar(Mathf.Round(bulletsLeftInMagazine));
@@ -185,11 +143,6 @@ public class PlayerShoot : MonoBehaviour {
             }
             //}
           
-        }
-
-        if (isReloading)
-        {
-            Reload();
         }
     }
 
@@ -218,4 +171,19 @@ public class PlayerShoot : MonoBehaviour {
             managerOfUI.ChangeAmmoBar(Mathf.Round(bulletsLeftInMagazine));
         }
     }
+
+
+    void PointerIsDown()
+    {
+        isPointerDown = true;
+        isPointerUp = false;
+    }
+
+    void PointerIsUp()
+    {
+        isPointerUp = true;
+        isPointerDown = false;
+    }
+
+
 }

@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4176238458027692}
   - component: {fileID: 54996280877629072}
   - component: {fileID: 114300834033781012}
+  - component: {fileID: 114969850023723910}
   - component: {fileID: 136308053664507286}
   m_Layer: 0
   m_Name: ChocolateBullet 1
@@ -128,7 +129,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &114300834033781012
 MonoBehaviour:
@@ -139,6 +140,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d8617311a957704796b583d0ad60c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114969850023723910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1686030713765616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a051a0d43fadf50468e551cd24d13634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!136 &136308053664507286

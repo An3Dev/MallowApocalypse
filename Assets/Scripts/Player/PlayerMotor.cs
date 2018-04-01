@@ -11,17 +11,6 @@ public class PlayerMotor : MonoBehaviour {
     private Vector3 cameraRotation = Vector3.zero;
     private Vector3 thrusterForce = Vector3.zero;
 
-    private float rotX;
-    private float rotY;
-    private Vector3 origRot;
-
-    [SerializeField]
-    float rotSpeed = 0.1f;
-
-
-    [SerializeField]
-    public float dir = -1;
-
     [SerializeField]
     GameObject player;
 
@@ -29,15 +18,23 @@ public class PlayerMotor : MonoBehaviour {
 
     private Rigidbody rb;
 
-    private Touch initTouch = new Touch();
+    public float rotateSpeed = 100.0f;
+    public int invertPitch = 1;
+    public Transform player;
+    private float pitch = 0.0f,
+    yaw = 0.0f;
+    //cache initial rotation of player so pitch and yaw don't reset to 0 before rotating
+    private Vector3 oRotation;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
 
-        origRot = cam.transform.eulerAngles;
-        rotX = origRot.x;
-        rotY = origRot.y;
+        //cache original rotation of player so pitch and yaw don't reset to 0 before rotating
+        oRotation = player.eulerAngles;
+        pitch = oRotation.x;
+        yaw = oRotation.y;
     }
 
     void FixedUpdate()
@@ -51,32 +48,25 @@ public class PlayerMotor : MonoBehaviour {
         // If on mobile use different touch dynamics
         if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            foreach(Touch touch in Input.touches)
+
+
+
+            if (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(1).phase == TouchPhase.Moved)
             {
-                if (touch.phase == TouchPhase.Began)
-                {
-                    initTouch = touch;
-                }
-                else if (touch.phase == TouchPhase.Moved)
-                {
-                    // swiping action
-                    float deltaX = initTouch.position.x - touch.position.x;
-                    float deltaY = initTouch.position.y - touch.position.y;
-                    rotX -= deltaY * Time.deltaTime * rotSpeed * dir;
-                    rotY += deltaX * Time.deltaTime * rotSpeed * dir;
-
-                    Mathf.Clamp(rotX, -45f, 45f);
-
-                    player.transform.eulerAngles = new Vector3(rotX, rotY , 0f);
-                }
-                else if (touch.phase == TouchPhase.Ended)
-                {
-                    initTouch = new Touch();
-                }
+                pitch -= Input.GetTouch(touch2Watch).deltaPosition.y * rotateSpeed * invertPitch * Time.deltaTime;
+                yaw += Input.GetTouch(touch2Watch).deltaPosition.x * rotateSpeed * invertPitch * Time.deltaTime;
+                //limit so we dont do backflips
+                pitch = Mathf.Clamp(pitch, -80, 80);
+                //do the rotations of our camera
+                player.eulerAngles = new Vector3(pitch, yaw, 0.0f);
             }
+
+            
         }
 
     }
+
+
 
     // Gets a movement vector
     public void Move(Vector3 _velocity)
