@@ -18,23 +18,14 @@ public class PlayerMotor : MonoBehaviour {
 
     private Rigidbody rb;
 
-    public float rotateSpeed = 100.0f;
-    public int invertPitch = 1;
-    public Transform player;
-    private float pitch = 0.0f,
-    yaw = 0.0f;
-    //cache initial rotation of player so pitch and yaw don't reset to 0 before rotating
-    private Vector3 oRotation;
+
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
 
-        //cache original rotation of player so pitch and yaw don't reset to 0 before rotating
-        oRotation = player.eulerAngles;
-        pitch = oRotation.x;
-        yaw = oRotation.y;
+
     }
 
     void FixedUpdate()
@@ -51,15 +42,7 @@ public class PlayerMotor : MonoBehaviour {
 
 
 
-            if (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(1).phase == TouchPhase.Moved)
-            {
-                pitch -= Input.GetTouch(touch2Watch).deltaPosition.y * rotateSpeed * invertPitch * Time.deltaTime;
-                yaw += Input.GetTouch(touch2Watch).deltaPosition.x * rotateSpeed * invertPitch * Time.deltaTime;
-                //limit so we dont do backflips
-                pitch = Mathf.Clamp(pitch, -80, 80);
-                //do the rotations of our camera
-                player.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-            }
+           
 
             
         }
