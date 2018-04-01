@@ -47,7 +47,7 @@ public class Variables{
     public static int waveNum = 1;
 
     // Money
-    public static long money = 20;
+    public static long money = 0;
 
     // Upgrade info
     public static int fireRateBeginningCost = 10;

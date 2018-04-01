@@ -22,7 +22,7 @@ public class BulletVisibility : MonoBehaviour {
             Destroy(transform.gameObject, 0.01f);
         }
 
-        if (collision.collider.gameObject == GameObject.Find("Environment"))
+        if (collision.collider.gameObject == GameObject.Find("Ground"))
         {
             Destroy(transform.gameObject, 0.0f);
         }

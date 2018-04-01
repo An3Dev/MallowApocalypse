@@ -18,14 +18,22 @@ public class PlayerMotor : MonoBehaviour {
 
     private Rigidbody rb;
 
-
-
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
 
+        Input.gyro.enabled = true;
+    }
 
+    private void Update()
+    {
+        // If on mobile use different touch dynamics
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            Quaternion rot = Quaternion.Euler(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0);
+            transform.Rotate(new Vector3(rot.eulerAngles.x, rot.eulerAngles.y, 0));
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+        }
     }
 
     void FixedUpdate()
@@ -36,16 +44,7 @@ public class PlayerMotor : MonoBehaviour {
             PerformRotation();
         }
         
-        // If on mobile use different touch dynamics
-        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-
-
-
-           
-
-            
-        }
+        
 
     }
 
