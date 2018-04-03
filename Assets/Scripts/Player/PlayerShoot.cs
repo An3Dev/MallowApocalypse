@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour {
 
@@ -52,6 +53,12 @@ public class PlayerShoot : MonoBehaviour {
     [SerializeField]
     bool isPointerUp;
 
+    [SerializeField]
+    Button shootButton;
+
+    [SerializeField]
+    Image shootButtonImage;
+
 	// Use this for initialization
 	void Start () {
         bulletsLeftInMagazine = Variables.magazineCapacity;
@@ -62,10 +69,24 @@ public class PlayerShoot : MonoBehaviour {
         isPointerDown = false;
         isPointerUp = false;
 
+        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
+        {
+            shootButton.gameObject.SetActive(false);
+            shootButton.interactable = false;
+            shootButtonImage.gameObject.SetActive(false);
+            shootButton.interactable = false;
+            
+        }
+
 	}
 
     private void Update()
     {
+
+        if (Input.touchCount > 0)
+        {
+            Shoot();
+        }
 
         fireRate = Variables.chocolateGunFireRate;
 
@@ -85,6 +106,11 @@ public class PlayerShoot : MonoBehaviour {
         //    // Stop shooting
            
         //}
+
+        if (Input.GetButton("Fire1"))
+        {
+            Shoot();
+        }
         
     }
 

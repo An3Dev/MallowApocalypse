@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour {
     Slider healthBar;
 
     [SerializeField]
+    GameController gameController;
+
+    [SerializeField]
     Slider ammoBar;
 
     [SerializeField]
@@ -54,6 +57,11 @@ public class UIManager : MonoBehaviour {
         }
 
         
+    }
+
+    public void CanRestartGame()
+    {
+        gameController.AllowRestart();
     }
 
     public void ChangeHealthBar(float newValue)

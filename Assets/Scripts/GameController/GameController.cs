@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     public static int waveNum = 1;
+    bool allowRestart = false;
 
     // Use this for initialization
     void Start () {
@@ -13,14 +14,27 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        // if user taps after he dies
+		if (allowRestart && Input.GetMouseButtonDown(0))
+        {
+            Restart();
+        }
 	}
 
     public void Restart()
     {
-        PlayerHealth.isPlayerDead = false;
-        ResetStaticVariables();
-        SceneManager.LoadScene("Main");
+
+        if (allowRestart)
+        {
+            PlayerHealth.isPlayerDead = false;
+            ResetStaticVariables();
+            SceneManager.LoadScene("Main");
+        }
+    }
+
+    public void AllowRestart()
+    {
+
     }
 
     void SlowDownTime()
