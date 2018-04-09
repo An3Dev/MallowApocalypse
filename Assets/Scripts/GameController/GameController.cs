@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour {
     public static int waveNum = 1;
     bool allowRestart = false;
 
+    public float timeScale = 1;
+
     // Use this for initialization
     void Start () {
         waveNum = Variables.waveNum;
@@ -14,11 +16,15 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Time.timeScale = timeScale;
+
         // if user taps after he dies
 		if (allowRestart && Input.GetMouseButtonDown(0))
         {
             Restart();
         }
+
+
 	}
 
     public void Restart()

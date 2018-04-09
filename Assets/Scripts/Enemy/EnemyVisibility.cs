@@ -22,7 +22,9 @@ public class EnemyVisibility : MonoBehaviour {
         if (collision.collider.gameObject == GameObject.Find("ChocolateBullet 1(Clone)"))
         {
             effect.transform.position = collision.contacts[0].point;
+            effect.transform.rotation = Quaternion.Euler(collision.collider.transform.rotation.eulerAngles);
             effect.Play();
+            
         }
     }
 }
