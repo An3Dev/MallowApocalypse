@@ -26,6 +26,8 @@ public class EnemyMovement : MonoBehaviour {
             agent.enabled = false;
             animator.SetTrigger("Celebrate");
         }
+
+        transform.position = new Vector3(transform.position.x, 1.45f, transform.position.z);
 	}
 
     public void Die()
