@@ -23,26 +23,28 @@ public class PlayerMotor : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 
         Input.gyro.enabled = true;
+
+        Cursor.visible = false;
     }
 
     private void Update()
     {
         // If on mobile use different touch dynamics
-        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            Quaternion rot = Quaternion.Euler(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0);
-            transform.Rotate(new Vector3(rot.eulerAngles.x, rot.eulerAngles.y, 0));
-            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
-        }
+        //if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        //{
+        //    Quaternion rot = Quaternion.Euler(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0);
+        //    transform.Rotate(new Vector3(rot.eulerAngles.x, rot.eulerAngles.y, 0));
+        //    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+        //}
     }
 
     void FixedUpdate()
     {
         PerformMovement();
-        if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
-        {
+        //if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+        //{
             PerformRotation();
-        }
+        //}
         
         
 
@@ -81,7 +83,8 @@ public class PlayerMotor : MonoBehaviour {
     // Perform rotation
     void PerformRotation()
     {
-        rb.MoveRotation(Quaternion.Slerp(rb.rotation, rb.rotation * Quaternion.Euler((rotation + -cameraRotation).normalized), cameraSmoothness));
+        rb.rotation = Quaternion.Slerp(rb.rotation, rb.rotation * Quaternion.Euler((rotation + -cameraRotation).normalized), cameraSmoothness);
+        //rb.MoveRotation( rb.rotation * Quaternion.Euler((rotation + -cameraRotation).normalized));
         //Quaternion.Slerp(rb.rotation, rb.rotation * Quaternion.Euler((rotation + -cameraRotation).normalized), cameraSmoothness);
 
         // Lock the z axis

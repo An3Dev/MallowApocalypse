@@ -52,10 +52,23 @@ public class PlayerController : MonoBehaviour {
         
 
 
+        //if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
+        //{
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.mousePosition.x > Screen.width / 4)
+            {
+                yRot = Input.GetAxis("Mouse X");
+            }
+            
+        }
+
         if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
         {
             yRot = Input.GetAxis("Mouse X");
         }
+            
+        //}
 
         //if (Application.platform == RuntimePlatform.Android)
         //{

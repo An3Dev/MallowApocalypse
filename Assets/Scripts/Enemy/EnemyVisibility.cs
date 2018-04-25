@@ -24,7 +24,6 @@ public class EnemyVisibility : MonoBehaviour {
             // In the future make there be less blood the lower the bullet hits the enemy.
             //effect.emission.rateOverTime = 5000f;
             effect.Play();
-            Destroy(effect, 3);
             
         }
     }

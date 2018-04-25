@@ -83,10 +83,10 @@ public class PlayerShoot : MonoBehaviour {
     private void Update()
     {
 
-        if (Input.touchCount > 0)
-        {
-            Shoot();
-        }
+        //if (Input.touchCount > 0)
+        //{
+        //    Shoot();
+        //}
 
         fireRate = Variables.chocolateGunFireRate;
 
@@ -104,14 +104,28 @@ public class PlayerShoot : MonoBehaviour {
         //else if (isPointerUp && isPointerDown)
         //{
         //    // Stop shooting
-           
+
         //}
 
-        if (Input.GetButton("Fire1"))
+         // if click was in left side of screen
+        if (Application.platform == RuntimePlatform.Android)
         {
-            Shoot();
+            if (Input.GetButton("Fire1") && Input.mousePosition.x <= Screen.width / 4)
+            {
+                Shoot();
+            }
         }
-        
+
+        // For PC only                 
+        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
+        {
+            if (Input.GetButton("Fire1"))
+            {
+                Shoot();
+            }
+        }
+            
+
     }
 
     void Shoot()
