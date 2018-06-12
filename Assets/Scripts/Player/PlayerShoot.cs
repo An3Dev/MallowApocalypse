@@ -59,8 +59,11 @@ public class PlayerShoot : MonoBehaviour {
     [SerializeField]
     Image shootButtonImage;
 
-	// Use this for initialization
-	void Start () {
+    [HideInInspector]
+    public bool ShootAxis;
+
+    // Use this for initialization
+    void Start () {
         bulletsLeftInMagazine = Variables.magazineCapacity;
         fireRate = Variables.chocolateGunFireRate;
         reloadTime = 0;
@@ -68,15 +71,6 @@ public class PlayerShoot : MonoBehaviour {
 
         isPointerDown = false;
         isPointerUp = false;
-
-        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
-        {
-            shootButton.gameObject.SetActive(false);
-            shootButton.interactable = false;
-            shootButtonImage.gameObject.SetActive(false);
-            shootButton.interactable = false;
-            
-        }
 
 	}
 
@@ -110,7 +104,7 @@ public class PlayerShoot : MonoBehaviour {
          // if click was in left side of screen
         if (Application.platform == RuntimePlatform.Android)
         {
-            if (Input.GetButton("Fire1") && Input.mousePosition.x <= Screen.width / 4)
+            if (ShootAxis)
             {
                 Shoot();
             }
